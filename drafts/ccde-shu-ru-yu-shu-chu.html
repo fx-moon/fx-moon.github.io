@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <title>C/C++的输入与输出</title>
+        <link rel="stylesheet" href="https://fx-moon.github.io/theme/css/main.css" />
+        <link href="https://fx-moon.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="salt fish on the moon Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://fx-moon.github.io/">salt fish on the moon </a></h1>
+                <nav><ul>
+                    <li><a href="https://fx-moon.github.io/pages/about.html">About</a></li>
+                    <li class="active"><a href="https://fx-moon.github.io/category/note.html">note</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://fx-moon.github.io/drafts/ccde-shu-ru-yu-shu-chu.html" rel="bookmark"
+           title="Permalink to C/C++的输入与输出">C/C++的输入与输出</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2017-08-10T00:00:00+08:00">
+                Published: 周四 10 八月 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://fx-moon.github.io/author/fx-moon.html">fx-moon</a>
+        </address>
+<p>In <a href="https://fx-moon.github.io/category/note.html">note</a>.</p>
+
+</footer><!-- /.post-info -->      <p>突然想研究一下C/C++的输入输出效率</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="center">传统C</th>
+<th align="center">C++</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">输入</td>
+<td align="center">scanf()</td>
+<td align="center">std::cin</td>
+</tr>
+<tr>
+<td align="left">输出</td>
+<td align="center">printf()</td>
+<td align="center">std::cout</td>
+</tr>
+<tr>
+<td align="left">文件</td>
+<td align="center">fread()</td>
+<td align="center">fstream</td>
+</tr>
+</tbody>
+</table>
+<p>大体这样</p>
+<p>引用别人的一些数据</p>
+<tbody>
+<tr style="background:rgb(250,250,250)">
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">方法/平台/时间(秒)</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">Linux gcc</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">Windows mingw</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">Windows VC2008</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">scanf</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">2.010</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">3.704</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">3.425</td>
+</tr>
+<tr style="background:rgb(250,250,250)">
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">cin</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">6.380</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">64.003</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">19.208</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">cin取消同步</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">2.050</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">6.004</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">19.616</td>
+</tr>
+<tr style="background:rgb(250,250,250)">
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">fread</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">0.290</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">0.241</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">0.304</td>
+</tr>
+<tr>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">read</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">0.290</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">0.398</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">不支持</td>
+</tr>
+<tr style="background:rgb(250,250,250)">
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">mmap</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">0.250</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">不支持</td>
+<td style="border:1px solid rgb(238,238,238); padding:4px; text-align:left">不支持</td>
+</tr>
+</tbody>
+
+<p>看到这个，我是不信的。。。</p>
+<p>因为C++这么NB的东西怎么这么菜！</p>
+<p>咳咳，因为cin在处理输入格式的时候是编译的时候预处理的，而scanf是运行时处理，理论上cin应该更快</p>
+<p>不过数学告诉我们（划掉）<strong>C</strong>更快</p>
+<p>C++：为什么会这样？明明是我先的，你们为什么这么熟练啊？</p>
+<p>因为你脚踏两只船啊</p>
+<p>cin在进行读取操作的同时，也在维护stdin的指针，使cin与scanf保持同步，而scanf可不管cin的死活，所以效率自然差距巨大。</p>
+<p>那就让cin别管stdin咯</p>
+<div class="highlight"><pre><span></span><span class="nt">ios</span><span class="p">::</span><span class="nd">sync_with_stdio</span><span class="o">(</span><span class="nt">false</span><span class="o">);</span>
+</pre></div>
+
+
+<p>表中的数据还是cin慢</p>
+<p>我自己测了一下</p>
+<p>WIN10 VS2017 x64 release</p>
+<p>10000000个数</p>
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="right">时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">cin</td>
+<td align="right">7.244</td>
+</tr>
+<tr>
+<td align="left">cin(无同步)</td>
+<td align="right">7.220</td>
+</tr>
+<tr>
+<td align="left">scanf</td>
+<td align="right">2.524</td>
+</tr>
+</tbody>
+</table>
+<p>结果相同</p>
+<p>换linux</p>
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="right">时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">cin</td>
+<td align="right">0.810</td>
+</tr>
+<tr>
+<td align="left">cin(无同步)</td>
+<td align="right">0.801</td>
+</tr>
+<tr>
+<td align="left">scanf</td>
+<td align="right">0.968</td>
+</tr>
+</tbody>
+</table>
+<p>询问了一下老师，老师的解释是系统实现以及编译器优化的问题</p>
+<p>大概是编译器自动把同步关掉了ε=ε=ε=┏(゜ロ゜;)┛</p>
+<p>注：在读取大量数据使用更底层的read更快</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://fx-moon.github.io/blog">blog</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://fx-moon.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

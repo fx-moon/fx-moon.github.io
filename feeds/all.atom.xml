@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>salt fish on the moon</title><link href="https://fx-moon.github.io/" rel="alternate"></link><link href="https://fx-moon.github.io/feeds/all.atom.xml" rel="self"></link><id>https://fx-moon.github.io/</id><updated>2018-11-12T00:00:00+08:00</updated><entry><title>try pelican</title><link href="https://fx-moon.github.io/try-pelican.html" rel="alternate"></link><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:fx-moon.github.io,2018-11-12:/try-pelican.html</id><summary type="html">&lt;h1&gt;try pelican&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I just forget the usage again and again,so I decided to WcRoIpTyE it=.=&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;getting start&lt;/h1&gt;
+&lt;h2&gt;installing&lt;/h2&gt;
+&lt;p&gt;Pelican currently runs best on Python 2.7.x and 3.3+; earlier versions of Python are not supported.&lt;/p&gt;
+&lt;p&gt;You can install Pelican via several different methods. The simplest is via …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;try pelican&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I just forget the usage again and again,so I decided to WcRoIpTyE it=.=&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;getting start&lt;/h1&gt;
+&lt;h2&gt;installing&lt;/h2&gt;
+&lt;p&gt;Pelican currently runs best on Python 2.7.x and 3.3+; earlier versions of Python are not supported.&lt;/p&gt;
+&lt;p&gt;You can install Pelican via several different methods. The simplest is via pip:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install pelican
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you plan on using Markdown as a markup format, you’ll need to install the Markdown library:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install markdown
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Typographical enhancements can be enabled in your settings file, but first the requisite Typogrify library must be installed:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install typogrify
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;upgrading&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install --upgrade pelican
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;kickstart your site&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican-quickstart
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;yourproject/
+├── content
+│   └── (pages)
+├── output
+├── develop_server.sh
+├── fabfile.py
+├── Makefile
+├── pelicanconf.py       # Main settings file
+└── publishconf.py       # Settings to use when ready to publish
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;writing content&lt;/h1&gt;
+&lt;h2&gt;articles and pages&lt;/h2&gt;
+&lt;p&gt;Pelican considers “articles” to be chronological content, such as posts on a blog, and thus associated with a date.&lt;/p&gt;
+&lt;p&gt;The idea behind “pages” is that they are usually not temporal in nature and are used for content that does not change very often.&lt;/p&gt;
+&lt;h2&gt;file metadata&lt;/h2&gt;
+&lt;p&gt;Pelican tries to be smart enough to get the information it needs from the file system (for instance, about the category of your articles), but some information you need to provide in the form of metadata inside your files.&lt;/p&gt;
+&lt;p&gt;Metadata syntax for Markdown posts should follow this pattern:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;Title&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;My&lt;/span&gt; &lt;span class="kd"&gt;super&lt;/span&gt; &lt;span class="n"&gt;title&lt;/span&gt;
+&lt;span class="n"&gt;Date&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2010&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;03&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;
+&lt;span class="n"&gt;Modified&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;2010&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;05&lt;/span&gt; &lt;span class="mi"&gt;19&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;30&lt;/span&gt;
+&lt;span class="n"&gt;Category&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Python&lt;/span&gt;
+&lt;span class="n"&gt;Tags&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;pelican&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;publishing&lt;/span&gt;
+&lt;span class="n"&gt;Slug&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="kd"&gt;super&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;post&lt;/span&gt;
+&lt;span class="n"&gt;Authors&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Alexis&lt;/span&gt; &lt;span class="n"&gt;Metaireau&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt; &lt;span class="n"&gt;Conan&lt;/span&gt; &lt;span class="n"&gt;Doyle&lt;/span&gt;
+&lt;span class="n"&gt;Summary&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Short&lt;/span&gt; &lt;span class="n"&gt;version&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt; &lt;span class="n"&gt;and&lt;/span&gt; &lt;span class="n"&gt;feeds&lt;/span&gt;
+
+&lt;span class="n"&gt;This&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="n"&gt;the&lt;/span&gt; &lt;span class="n"&gt;content&lt;/span&gt; &lt;span class="n"&gt;of&lt;/span&gt; &lt;span class="n"&gt;my&lt;/span&gt; &lt;span class="kd"&gt;super&lt;/span&gt; &lt;span class="n"&gt;blog&lt;/span&gt; &lt;span class="n"&gt;post&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;pages&lt;/h2&gt;
+&lt;p&gt;If you create a folder named &lt;code&gt;pages&lt;/code&gt; inside the content folder, all the files in it will be used to generate static pages, such as About or Contact pages. (See example filesystem layout below.)&lt;/p&gt;
+&lt;p&gt;You can use the &lt;code&gt;DISPLAY_PAGES_ON_MENU&lt;/code&gt; setting to control whether all those pages are displayed in the primary navigation menu. (Default is &lt;code&gt;True&lt;/code&gt;.)&lt;/p&gt;
+&lt;p&gt;If you want to exclude any pages from being linked to or listed in the menu then add a &lt;code&gt;status: hidden&lt;/code&gt; attribute to its metadata. This is useful for things like making error pages that fit the generated theme of your site.&lt;/p&gt;
+&lt;h2&gt;linking to internal content&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;it&amp;#39;s useful i think
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;From Pelican 3.1 onwards, it is now possible to specify intra-site links to files in the &lt;em&gt;source&lt;/em&gt; content hierarchy instead of files in the &lt;em&gt;generated&lt;/em&gt; hierarchy. This makes it easier to link from the current post to other content that may be sitting alongside that post (instead of having to determine where the other content will be placed after site generation).&lt;/p&gt;
+&lt;p&gt;To link to internal content (files in the &lt;code&gt;content&lt;/code&gt; directory), use the following syntax for the link target: &lt;code&gt;{filename}path/to/file&lt;/code&gt; Note: forward slashes, &lt;code&gt;/&lt;/code&gt;, are the required path separator in the &lt;code&gt;{filename}&lt;/code&gt; directive on all operating systems, including Windows.&lt;/p&gt;
+&lt;h3&gt;linking to static files&lt;/h3&gt;
+&lt;p&gt;Linking to non-article or non-page content uses the same &lt;code&gt;{filename}&lt;/code&gt; syntax as described above. It is important to remember that those files will not be copied to the output directory unless the source directories containing them are included in the &lt;code&gt;STATIC_PATHS&lt;/code&gt; setting of the project’s &lt;code&gt;pelicanconf.py&lt;/code&gt; file. Pelican’s default configuration includes the &lt;code&gt;images&lt;/code&gt; directory for this, but others must be added manually. Forgetting to do so will result in broken links.&lt;/p&gt;
+&lt;h3&gt;mixed content in the same directory&lt;/h3&gt;
+&lt;p&gt;Starting with Pelican 3.5, static files can safely share a source directory with page source files, without exposing the page sources in the generated site. Any such directory must be added to both &lt;code&gt;STATIC_PATHS&lt;/code&gt; and &lt;code&gt;PAGE_PATHS&lt;/code&gt; (or &lt;code&gt;STATIC_PATHS&lt;/code&gt; and &lt;code&gt;ARTICLE_PATHS&lt;/code&gt;). Pelican will identify and process the page source files normally, and copy the remaining files as if they lived in a separate directory reserved for static files.&lt;/p&gt;
+&lt;p&gt;Note: Placing static and content source files together in the same source directory does not guarantee that they will end up in the same place in the generated site. The easiest way to do this is by using the &lt;code&gt;{attach}&lt;/code&gt; link syntax (described below). Alternatively, the &lt;code&gt;STATIC_SAVE_AS&lt;/code&gt;, &lt;code&gt;PAGE_SAVE_AS&lt;/code&gt;, and &lt;code&gt;ARTICLE_SAVE_AS&lt;/code&gt; settings (and the corresponding &lt;code&gt;*_URL&lt;/code&gt; settings) can be configured to place files of different types together, just as they could in earlier versions of Pelican.&lt;/p&gt;
+&lt;h3&gt;attaching static files&lt;/h3&gt;
+&lt;p&gt;Starting with Pelican 3.5, static files can be “attached” to a page or article using this syntax for the link target: &lt;code&gt;{attach}path/to/file&lt;/code&gt; This works like the &lt;code&gt;{filename}&lt;/code&gt; syntax, but also relocates the static file into the linking document’s output directory. If the static file originates from a subdirectory beneath the linking document’s source, that relationship will be preserved on output. Otherwise, it will become a sibling of the linking document.&lt;/p&gt;
+&lt;p&gt;This only works for linking to static files, and only when they originate from a directory included in the &lt;code&gt;STATIC_PATHS&lt;/code&gt; setting.&lt;/p&gt;
+&lt;h3&gt;linking to authors,categories,index and tags&lt;/h3&gt;
+&lt;p&gt;You can link to authors, categories, index and tags using the &lt;code&gt;{author}name&lt;/code&gt;, &lt;code&gt;{category}foobar&lt;/code&gt;, &lt;code&gt;{index}&lt;/code&gt; and &lt;code&gt;{tag}tagname&lt;/code&gt; syntax.&lt;/p&gt;
+&lt;h3&gt;deprecated internal link syntax&lt;/h3&gt;
+&lt;p&gt;To remain compatible with earlier versions, Pelican still supports vertical bars (&lt;code&gt;||&lt;/code&gt;) in addition to curly braces (&lt;code&gt;{}&lt;/code&gt;) for internal links. For example: &lt;code&gt;|filename|an_article.rst&lt;/code&gt;, &lt;code&gt;|tag|tagname&lt;/code&gt;, &lt;code&gt;|category|foobar&lt;/code&gt;. The syntax was changed from &lt;code&gt;||&lt;/code&gt; to &lt;code&gt;{}&lt;/code&gt; to avoid collision with Markdown extensions or reST directives. Support for the old syntax may eventually be removed.&lt;/p&gt;
+&lt;h2&gt;importing an existing site&lt;/h2&gt;
+&lt;p&gt;It is possible to import your site from WordPress, Tumblr, Dotclear, and RSS feeds using a simple script. See &lt;a href="http://docs.getpelican.com/en/stable/importer.html#import"&gt;&lt;code&gt;Importing an existing site&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;h2&gt;translations&lt;/h2&gt;
+&lt;h2&gt;syntax highlighting&lt;/h2&gt;
+&lt;h2&gt;publishing drafts&lt;/h2&gt;
+&lt;h1&gt;publish your site&lt;/h1&gt;
+&lt;h2&gt;site generation&lt;/h2&gt;
+&lt;p&gt;Once Pelican is installed and you have some content (e.g., in Markdown or reST format), you can convert your content into HTML via the &lt;code&gt;pelican&lt;/code&gt; command, specifying the path to your content and (optionally) the path to your &lt;a href="http://docs.getpelican.com/en/stable/settings.html"&gt;settings&lt;/a&gt; file:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican /path/to/your/content/ [-s path/to/your/settings.py]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The above command will generate your site and save it in the &lt;code&gt;output/&lt;/code&gt; folder, using the default theme to produce a simple site. The default theme consists of very simple &lt;strong&gt;HTML&lt;/strong&gt; without styling and is provided so folks may use it as a basis for creating their own themes.&lt;/p&gt;
+&lt;p&gt;When working on a single article or page, it is possible to generate only the file that corresponds to that content. To do this, use the &lt;code&gt;--write-selected&lt;/code&gt; argument, like so:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican --write-selected output/posts/my-post-title.html
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Note that you must specify the path to the generated output file — not the source content. To determine the output file name and location, use the &lt;code&gt;--debug&lt;/code&gt; flag. If desired, &lt;code&gt;--write-selected&lt;/code&gt; can take a comma-separated list of paths or can be configured as a setting. (See: &lt;a href="http://docs.getpelican.com/en/stable/settings.html#writing-only-selected-content"&gt;Writing only selected content&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Pelican has other command-line switches available. Have a look at the help to see all the options you can use:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican --help
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;viewing the generated files&lt;/h3&gt;
+&lt;p&gt;The files generated by Pelican are static files, so you don’t actually need anything special to view them. You can use your browser to open the generated HTML files directly:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;firefox output/index.html
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Because the above method may have trouble locating your CSS and other linked assets, running a simple web server using Python will often provide a more reliable previewing experience.&lt;/p&gt;
+&lt;p&gt;For Python 2, run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd output
+python -m SimpleHTTPServer
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;For Python 3,run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cd output
+python -m http.server
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once the basic server has been started, you can preview your site at &lt;a href="http://localhost:8000/"&gt;http://localhost:8000/&lt;/a&gt;&lt;/p&gt;
+&lt;h2&gt;deployment&lt;/h2&gt;
+&lt;p&gt;After you have generated your site, previewed it in your local development environment, and are ready to deploy it to production, you might first re-generate your site with any production-specific settings (e.g., analytics feeds, etc.) that you may have defined:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pelican content -s publishconf.py
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To base your publish configuration on top of your &lt;code&gt;pelicanconf.py&lt;/code&gt;, you can import your pelicanconf settings by including the following line in your &lt;code&gt;publishconf.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pelicanconf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you have generated a &lt;code&gt;publishconf.py&lt;/code&gt; using &lt;code&gt;pelican-quickstart&lt;/code&gt;, this line is included by default.&lt;/p&gt;
+&lt;p&gt;The steps for deploying your site will depend on where it will be hosted. If you have SSH access to a server running Nginx or Apache, you might use the &lt;code&gt;rsync&lt;/code&gt; tool to transmit your site files:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;rsync -avc --delete output/ host.example.com:/var/www/your-site/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;There are many other deployment options, some of which can be configured when first setting up your site via the &lt;code&gt;pelican-quickstart&lt;/code&gt; command. See the &lt;a href="http://docs.getpelican.com/en/stable/tips.html"&gt;Tips&lt;/a&gt; page for detail on publishing via GitHub Pages.&lt;/p&gt;
+&lt;h2&gt;automation&lt;/h2&gt;
+&lt;p&gt;While the &lt;code&gt;pelican&lt;/code&gt; command is the canonical way to generate your site, automation tools can be used to streamline the generation and publication flow. One of the questions asked during the &lt;code&gt;pelican-quickstart&lt;/code&gt; process pertains to whether you want to automate site generation and publication. If you answered “&lt;em&gt;yes&lt;/em&gt;” to that question, a &lt;code&gt;tasks.py&lt;/code&gt; and &lt;code&gt;Makefile&lt;/code&gt; will be generated in the root of your project. These files, pre-populated with certain information gleaned from other answers provided during the pelican-quickstart process, are meant as a starting point and should be customized to fit your particular needs and usage patterns. If you find one or both of these automation tools to be of limited utility, these files can deleted at any time and will not affect usage of the canonical pelican command.&lt;/p&gt;
+&lt;p&gt;Following are automation tools that “wrap” the &lt;code&gt;pelican&lt;/code&gt; command and can simplify the process of generating, previewing, and uploading your site.&lt;/p&gt;
+&lt;h3&gt;invoke&lt;/h3&gt;
+&lt;p&gt;The advantage of &lt;a href="http://www.pyinvoke.org/"&gt;Invoke&lt;/a&gt; is that it is written in Python and thus can be used in a wide range of environments. The downside is that it must be installed separately. Use the following command to install Invoke, prefixing with &lt;code&gt;sudo&lt;/code&gt; if your environment requires it:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;pip install invoke
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Take a moment to open the &lt;code&gt;tasks.py&lt;/code&gt; file that was generated in your project root. You will see a number of commands, any one of which can be renamed, removed, and/or customized to your liking. Using the out-of-the-box configuration, you can generate your site via:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;invoke build
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you’d prefer to have Pelican automatically regenerate your site every time a change is detected (which is handy when testing locally), use the following command instead:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;invoke regenerate
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To serve the generated site so it can be previewed in your browser at &lt;a href="http://localhost:8000/"&gt;http://localhost:8000/&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;invoke serve
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If during the &lt;code&gt;pelican-quickstart&lt;/code&gt; process you answered “&lt;em&gt;yes&lt;/em&gt;” when asked whether you want to upload your site via SSH, you can use the following command to publish your site via rsync over SSH:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;invoke publish
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;These are just a few of the commands available by default, so feel free to explore &lt;code&gt;tasks.py&lt;/code&gt; and see what other commands are available. More importantly, don’t hesitate to customize &lt;code&gt;tasks.py&lt;/code&gt; to suit your specific needs and preferences.&lt;/p&gt;
+&lt;h3&gt;make&lt;/h3&gt;
+&lt;p&gt;A &lt;code&gt;Makefile&lt;/code&gt; is also automatically created for you when you say “yes” to the relevant question during the &lt;code&gt;pelican-quickstart&lt;/code&gt; process. The advantage of this method is that the &lt;code&gt;make&lt;/code&gt; command is built into most POSIX systems and thus doesn’t require installing anything else in order to use it. The downside is that non-POSIX systems (e.g., Windows) do not include &lt;code&gt;make&lt;/code&gt;, and installing it on those systems can be a non-trivial task.&lt;/p&gt;
+&lt;p&gt;If you want to use &lt;code&gt;make&lt;/code&gt; to generate your site using the settings in &lt;code&gt;pelicanconf.py&lt;/code&gt;, run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make html
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To generate the site for production, using the settings in &lt;code&gt;publishconf.py&lt;/code&gt;, run:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make publish
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;If you’d prefer to have Pelican automatically regenerate your site every time a change is detected (which is handy when testing locally), use the following command instead:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make regenerate
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;To serve the generated site so it can be previewed in your browser at &lt;a href="http://localhost:8000/"&gt;http://localhost:8000/&lt;/a&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make serve
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Normally you would need to run &lt;code&gt;make regenerate&lt;/code&gt; and &lt;code&gt;make serve&lt;/code&gt; in two separate terminal sessions, but you can run both at once via:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make devserver
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The above command will simultaneously run Pelican in regeneration mode as well as serve the output at &lt;a href="http://localhost:8000"&gt;http://localhost:8000&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;When you’re ready to publish your site, you can upload it via the method(s) you chose during the &lt;code&gt;pelican-quickstart&lt;/code&gt; questionnaire. For this example, we’ll use rsync over ssh:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;make rsync_upload
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;(The default &lt;code&gt;Makefile&lt;/code&gt; and &lt;code&gt;devserver.sh&lt;/code&gt; scripts use the &lt;code&gt;python&lt;/code&gt; and &lt;code&gt;pelican&lt;/code&gt; executables to complete its tasks. If you want to use different executables, such as &lt;code&gt;python3&lt;/code&gt;, you can set the &lt;code&gt;PY&lt;/code&gt; and &lt;code&gt;PELICAN&lt;/code&gt; environment variables, respectively, to override the default executable names.)&lt;/p&gt;</content></entry><entry><title>git learning note</title><link href="https://fx-moon.github.io/git-learning-note.html" rel="alternate"></link><published>2018-08-10T00:00:00+08:00</published><updated>2018-08-10T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:fx-moon.github.io,2018-08-10:/git-learning-note.html</id><summary type="html">&lt;hr&gt;
+&lt;h1&gt;git learning note&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h2&gt;git init&lt;/h2&gt;
+&lt;p&gt;This creates a new subdirectory named .git that contains all of your necessary repository files — a Git repository skeleton. At this point, nothing in your project is tracked yet. &lt;/p&gt;
+&lt;h2&gt;git add&lt;/h2&gt;
+&lt;p&gt;If you want to start version-controlling existing files (as opposed to an empty directory …&lt;/p&gt;</summary><content type="html">&lt;hr&gt;
+&lt;h1&gt;git learning note&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h2&gt;git init&lt;/h2&gt;
+&lt;p&gt;This creates a new subdirectory named .git that contains all of your necessary repository files — a Git repository skeleton. At this point, nothing in your project is tracked yet. &lt;/p&gt;
+&lt;h2&gt;git add&lt;/h2&gt;
+&lt;p&gt;If you want to start version-controlling existing files (as opposed to an empty directory), you should probably begin tracking those files and do an initial commit.&lt;/p&gt;
+&lt;h2&gt;git commit&lt;/h2&gt;
+&lt;p&gt;You can accomplish that with a few git add commands that specify the files you want to track, followed by a &lt;code&gt;git commit&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;git clone&lt;/h2&gt;
+&lt;p&gt;If you want to get a copy of an existing Git repository — for example, a project you’d like to contribute to — the command you need is &lt;code&gt;git clone&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;git status&lt;/h2&gt;
+&lt;p&gt;The main tool you use to determine which files are in which state.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;nothing to commit, working directory clean&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This means you have a clean working directory — in other words, none of your tracked files are modified. Git also doesn’t see any untracked files, or they would be listed here.&lt;/p&gt;
+&lt;h3&gt;short status&lt;/h3&gt;
+&lt;p&gt;While the &lt;code&gt;git status&lt;/code&gt; output is pretty comprehensive, it’s also quite wordy. Git also has a short status flag so you can see your changes in a more compact way. If you run &lt;code&gt;git status -s&lt;/code&gt; or &lt;code&gt;git status --short&lt;/code&gt; you get a far more simplified output from the command.&lt;/p&gt;
+&lt;h2&gt;Ignoring Files&lt;/h2&gt;
+&lt;p&gt;Often, you’ll have a class of files that you don’t want Git to automatically add or even show you as being untracked. These are generally automatically generated files such as log files or files produced by your build system. In such cases, you can create a file listing patterns to match them named &lt;code&gt;.gitignore&lt;/code&gt;.&lt;/p&gt;
+&lt;h2&gt;git diff&lt;/h2&gt;
+&lt;p&gt;If the &lt;code&gt;git status&lt;/code&gt; command is too vague for you — you want to know exactly what you changed, not just which files were changed — you can use the &lt;code&gt;git diff&lt;/code&gt; command.&lt;/p&gt;
+&lt;h2&gt;git rm&lt;/h2&gt;
+&lt;p&gt;To remove a file from Git, you have to remove it from your tracked files (more accurately, remove it from your staging area) and then commit. The &lt;code&gt;git rm&lt;/code&gt; command does that, and also removes the file from your working directory so you don’t see it as an untracked file the next time around.&lt;/p&gt;
+&lt;h2&gt;git mv&lt;/h2&gt;
+&lt;p&gt;Thus it’s a bit confusing that Git has a mv command. If you want to rename a file in Git, you can run something like:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ git mv file_from file_to&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;and it works fine.&lt;/p&gt;
+&lt;h2&gt;git log&lt;/h2&gt;
+&lt;p&gt;After you have created several commits, or if you have cloned a repository with an existing commit history, you’ll probably want to look back to see what has happened. The most basic and powerful tool to do this is the &lt;code&gt;git log&lt;/code&gt; command.&lt;/p&gt;
+&lt;p&gt;One of the more helpful options is &lt;code&gt;-p&lt;/code&gt; or &lt;code&gt;--patch&lt;/code&gt;, which shows the difference (the patch output) introduced in each commit. You can also limit the number of log entries displayed, such as using &lt;code&gt;-2&lt;/code&gt; to show only the last two entries.&lt;/p&gt;
+&lt;p&gt;If you want to see some abbreviated stats for each commit, you can use the &lt;code&gt;--stat&lt;/code&gt; option&lt;/p&gt;</content></entry></feed>
