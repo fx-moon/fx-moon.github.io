@@ -3,245 +3,350 @@
 <head>
         <meta charset="utf-8" />
         <title>salt fish on the moon</title>
-        <link rel="stylesheet" href="https://fx-moon.github.io/theme/css/main.css" />
-        <link href="https://fx-moon.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="salt fish on the moon Atom Feed" />
+        <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="https://fx-moon.github.io/">salt fish on the moon </a></h1>
+                <h1><a href="/">salt fish on the moon </a></h1>
                 <nav><ul>
-                    <li><a href="https://fx-moon.github.io/pages/about.html">About</a></li>
-                    <li><a href="https://fx-moon.github.io/category/note.html">note</a></li>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/category/note.html">note</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://fx-moon.github.io/try-pelican.html">try pelican</a></h1>
+                    <h1 class="entry-title"><a href="/boost-learning-note-1-getting-started-on-windows.html">boost learning note (1) getting started on Windows</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2018-11-12T00:00:00+08:00">
                 Published: 周一 12 十一月 2018
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="https://fx-moon.github.io/author/fx-moon.html">fx-moon</a>
+                By                         <a class="url fn" href="/author/fx-moon.html">fx-moon</a>
         </address>
-<p>In <a href="https://fx-moon.github.io/category/note.html">note</a>.</p>
+<p>In <a href="/category/note.html">note</a>.</p>
+<p>tags: <a href="/tag/boost.html">boost</a> </p>
+</footer><!-- /.post-info --><h1>1 Get boost</h1>
+<p>just find a copy on <a href="https://www.boost.org">https://www.boost.org</a></p>
+<h1>2 The boost distribution</h1>
+<div class="highlight"><pre><span></span>boost_1_67_0<span class="se">\ </span>.................The “boost root directory”
+   index.htm .........A copy of www.boost.org starts here
+   boost<span class="se">\ </span>.........................All Boost Header files
+   lib<span class="se">\ </span>.....................precompiled library binaries
+   libs<span class="se">\ </span>............Tests, .cpps, docs, etc., by library
+     index.html ........Library documentation starts here
+     algorithm<span class="se">\</span>
+     any<span class="se">\</span>
+     array<span class="se">\</span>
+                     …more libraries…
+   status<span class="se">\ </span>.........................Boost-wide <span class="nb">test</span> suite
+   tools<span class="se">\ </span>...........Utilities, e.g. Boost.Build, quickbook, bcp
+   more<span class="se">\ </span>..........................Policy documents, etc.
+   doc<span class="se">\ </span>...............A subset of all Boost library docs
+</pre></div>
 
-</footer><!-- /.post-info --><h1>try pelican</h1>
-<blockquote>
-<p>I just forget the usage again and again,so I decided to WcRoIpTyE it=.=</p>
+
+<ol>
+<li>The path to the <strong>boost root directory</strong> (often C:\Program Files\boost\boost_1_67_0) is sometimes referred to as <em>$BOOST_ROOT</em> in documentation and mailing lists .</li>
+<li>To compile anything in Boost, you need a directory containing the <code>boost\</code> subdirectory in your <code>#include</code> path. Specific steps for setting up <code>#include</code> paths in Microsoft Visual Studio follow later in this document; if you use another IDE, please consult your product's documentation for instructions.</li>
+<li>Since all of Boost's header files have the <code>.hpp</code> extension, and live in the <code>boost\</code> subdirectory of the boost root, your Boost <code>#include</code> directives will look like:
+    <code>c
+    #include &lt;boost/whatever.hpp&gt;</code>
+    or
+    <code>c
+    #include "boost/whatever.hpp"</code>
+    depending on your preference regarding the use of angle bracket includes. Even Windows users can (and, for portability reasons, probably should) use forward slashes in #include directives; your compiler doesn't care.</li>
+<li>Don't be distracted by the <code>doc\</code> subdirectory; it only contains a subset of the Boost documentation. Start with <code>libs\index.html</code> if you're looking for the whole enchilada.<blockquote>
+<h2>Header Organization</h2>
+<p>The organization of Boost library headers isn't entirely uniform, but most libraries follow a few patterns:
+<em> Some older libraries and most very small libraries place all public headers directly into <code>boost\</code>.
+</em> Most libraries' public headers live in a subdirectory of boost\, named after the library. For example, you'll find the Python library's def.hpp header in
+  <code>bash
+  boost\python\def.hpp.</code>
+<em> Some libraries have an “aggregate header” in boost\ that #includes all of the library's other headers. For example, Boost.Python's aggregate header is
+  <code>bash
+  boost\python.hpp.</code>
+</em> Most libraries place private headers in a subdirectory called <code>detail\</code>, or <code>aux_\</code>. Don't expect to find anything you can use in these directories.</p>
 </blockquote>
-<h1>getting start</h1>
-<h2>installing</h2>
-<p>Pelican currently runs best on Python 2.7.x and 3.3+; earlier versions of Python are not supported.</p>
-<p>You can install Pelican via several different methods. The simplest is via pip:</p>
-<div class="highlight"><pre><span></span>pip install pelican
+</li>
+</ol>
+<h1>3 Header-Only Libraries</h1>
+<p>The first thing many people want to know is, “how do I build Boost?” The good news is that often, there's nothing to build.</p>
+<blockquote>
+<h2>Nothing to Build?</h2>
+<p>Most Boost libraries are header-only: they consist entirely of header files containing templates and inline functions, and require no separately-compiled library binaries or special treatment when linking.</p>
+</blockquote>
+<p>The only Boost libraries that must be built separately are:</p>
+<ul>
+<li>Boost.Chrono</li>
+<li>Boost.Context</li>
+<li>Boost.Filesystem</li>
+<li>Boost.GraphParallel</li>
+<li>Boost.IOStreams</li>
+<li>Boost.Locale</li>
+<li>Boost.Log <code>(see build documentation)</code></li>
+<li>Boost.MPI</li>
+<li>Boost.ProgramOptions</li>
+<li>Boost.Python <code>(see the Boost.Python build documentation before building and installing it)</code></li>
+<li>Boost.Regex</li>
+<li>Boost.Serialization</li>
+<li>Boost.Signals</li>
+<li>Boost.System</li>
+<li>Boost.Thread</li>
+<li>Boost.Timer</li>
+<li>Boost.Wave</li>
+</ul>
+<p>A few libraries have optional separately-compiled binaries:</p>
+<ul>
+<li><strong>Boost.DateTime</strong> has a binary component that is only needed if you're using its to_string/from_string or serialization features, or if you're targeting Visual C++ 6.x or Borland.</li>
+<li><strong>Boost.Graph</strong> also has a binary component that is only needed if you intend to parse GraphViz files.</li>
+<li><strong>Boost.Math</strong> has binary components for the TR1 and C99 cmath functions.</li>
+<li><strong>Boost.Random</strong> has a binary component which is only needed if you're using random_device.</li>
+<li><strong>Boost.Test</strong> can be used in “header-only” or “separately compiled” mode, although <em>separate compilation is recommended for serious use</em>.</li>
+<li><strong>Boost.Exception</strong> provides non-intrusive implementation of <code>exception_ptr</code> for 32-bit <code>_MSC_VER==1310</code> and <code>_MSC_VER==1400</code> which requires a separately-compiled binary. This is enabled by <code>#define BOOST_ENABLE_NON_INTRUSIVE_EXCEPTION_PTR</code>.</li>
+</ul>
+<h1>4 Build a Simple Program Using Boost</h1>
+<p>To keep things simple, let's start by using a header-only library. The following program reads a sequence of integers from standard input, uses Boost.Lambda to multiply each number by three, and writes them to standard output:</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/lambda/lambda.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iterator&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">lambda</span><span class="p">;</span>
+    <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">istream_iterator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">in</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span>
+        <span class="n">in</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">),</span> <span class="n">in</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">_1</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">&quot; &quot;</span> <span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 
 
-<p>If you plan on using Markdown as a markup format, you’ll need to install the Markdown library:</p>
-<div class="highlight"><pre><span></span>pip install markdown
+<p>Copy the text of this program into a file called example.cpp.</p>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>To build the examples in this guide, you can use an Integrated Development Environment (IDE) like Visual Studio, or you can issue commands from the <a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#command-prompt">command prompt</a>. Since every IDE and compiler has different options and Microsoft's are by far the dominant compilers on Windows, we only give specific directions here for Visual Studio 2005 and .NET 2003 IDEs and their respective command prompt compilers (using the command prompt is a bit simpler). If you are using another compiler or IDE, it should be relatively easy to adapt these instructions to your environment.</p>
+</blockquote>
+<h2><a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#build-from-the-visual-studio-ide">4.1 Build From the Visual Studio IDE</a></h2>
+<h2><a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#or-build-from-the-command-prompt">4.2 Or, Build From the Command Prompt</a></h2>
+<h2><a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#errors-and-warnings">4.3 Errors and Warnings</a></h2>
+<h1>5 Prepare to Use a Boost Library Binary</h1>
+<p>If you want to use any of the separately-compiled Boost libraries, you'll need to acquire library binaries.</p>
+<h2>5.1 Simplified Build From Source</h2>
+<p>If you wish to build from source with Visual C++, you can use a simple build procedure described in this section. Open the command prompt and change your current directory to the Boost root directory. Then, type the following commands:</p>
+<div class="highlight"><pre><span></span>bootstrap
+.<span class="se">\b</span><span class="m">2</span>
 </pre></div>
 
 
-<p>Typographical enhancements can be enabled in your settings file, but first the requisite Typogrify library must be installed:</p>
-<div class="highlight"><pre><span></span>pip install typogrify
+<p>The first command prepares the Boost.Build system for use. The second command invokes Boost.Build to build the separately-compiled Boost libraries. Please consult the <a href="https://www.boost.org/build/doc/html/bbv2/overview/invocation.html">Boost.Build documentation</a> for a list of allowed options.</p>
+<h2><a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#or-build-binaries-from-source">5.2 Or,Build Binary From Source</a></h2>
+<h2><a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#expected-build-output">5.3 Expected Build Output</a></h2>
+<h2><a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#in-case-of-build-errors">5.4 In Case of Buid Errors</a></h2>
+<h1>6 Link Your Program to a Boost Library</h1>
+<p>To demonstrate linking with a Boost binary library, we'll use the following simple program that extracts the subject lines from emails. It uses the <a href="https://www.boost.org/doc/libs/1_68_0/libs/regex/index.html">Boost.Regex</a> library, which has a separately-compiled binary component.</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/regex.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">regex</span> <span class="n">pat</span><span class="p">(</span> <span class="s">&quot;^Subject: (Re: |Aw: )*(.*)&quot;</span> <span class="p">);</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">);</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">smatch</span> <span class="n">matches</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">boost</span><span class="o">::</span><span class="n">regex_match</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">matches</span><span class="p">,</span> <span class="n">pat</span><span class="p">))</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">matches</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 
 
-<h2>upgrading</h2>
-<div class="highlight"><pre><span></span>pip install --upgrade pelican
+<p>There are two main challenges associated with linking:</p>
+<ol>
+<li>Tool configuration, e.g. choosing command-line options or IDE build settings.</li>
+<li>Identifying the library binary, among all the build variants, whose compile configuration is compatible with the rest of your project.</li>
+</ol>
+<blockquote>
+<p><strong>Auto-Linking</strong></p>
+<p>Most Windows compilers and linkers have so-called “auto-linking support,” which eliminates the second challenge. Special code in Boost header files detects your compiler options and uses that information to encode the name of the correct library into your object files; the linker selects the library with that name from the directories you've told it to search.
+The GCC toolchains (Cygwin and MinGW) are notable exceptions; GCC users should refer to the <a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/unix-variants.html#link-your-program-to-a-boost-library">linking instructions for Unix variant OSes</a> for the appropriate command-line options to use.</p>
+</blockquote>
+<h2>6.1 Link From Within the Visual Studio IDE</h2>
+<p>Starting with the <em>header-only example project</em> we created earlier:</p>
+<ol>
+<li>Right-click <strong>example</strong> in the Solution Explorer pane and select Properties from the resulting pop-up menu.</li>
+<li>In Configuration <em>Properties &gt; Linker &gt; Additional Library Directories</em>, enter the path to the Boost binaries, e.g.  <em>C:\Program Files\boost\boost_1_67_0\lib\</em>.</li>
+<li>From the <em>Build</em> menu, select <em>Build Solution</em>.</li>
+</ol>
+<h2>6.2 Or,Link From the Command Prompt</h2>
+<p>For example, we can compile and link the above program from the Visual C++ command-line by simply adding the <strong>bold</strong> text below to the command line we used earlier, assuming your Boost binaries are in <em>C:\Program Files\boost\boost_1_67_0\lib</em>:</p>
+<div class="highlight"><pre><span></span>cl /EHsc /I path\to\boost_1_67_0 example.cpp /link /LIBPATH:C:\Program Files\boost\boost_1_67_0\lib
 </pre></div>
 
 
-<h2>kickstart your site</h2>
-<div class="highlight"><pre><span></span>pelican-quickstart
+<h2>6.3 Library Naming</h2>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>If, like Visual C++, your compiler supports auto-linking, you can probably skip to the next step.</p>
+</blockquote>
+<p>In order to choose the right binary for your build configuration you need to know how Boost binaries are named. Each library filename is composed of a common sequence of elements that describe how it was built. For example, <code>libboost_regex-vc71-mt-d-x86-1_34.lib</code> can be broken down into the following elements:</p>
+<p><strong>lib</strong>
+    Prefix: except on Microsoft Windows, every Boost library name begins with this string. On Windows, only ordinary static libraries use the lib prefix; import libraries and DLLs do not.</p>
+<p><strong>boost_regex</strong>
+    Library name: all boost library filenames begin with boost_.</p>
+<p><strong>-vc71</strong>
+    Toolset tag: identifies the toolset and version used to build the binary.</p>
+<p><strong>-mt</strong>
+    Threading tag: indicates that the library was built with multithreading support enabled. Libraries built without multithreading support can be identified by the absence of <code>-mt</code>.</p>
+<p><strong>-d</strong>
+    ABI tag: encodes details that affect the library's interoperability with other compiled code. For each such feature, a single letter is added to the tag:</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Use this library when:</th>
+<th>Boost.Build option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>s</td>
+<td>linking statically to the C++ standard library and compiler runtime support libraries.</td>
+<td>runtime-link=static</td>
+</tr>
+<tr>
+<td>g</td>
+<td>using debug versions of the standard and runtime support libraries.</td>
+<td>runtime-debugging=on</td>
+</tr>
+<tr>
+<td>y</td>
+<td>using a special <a href="https://www.boost.org/doc/libs/1_68_0/libs/python/doc/html/building/python_debugging_builds.html">debug build of Python</a>.</td>
+<td>python-debugging=on</td>
+</tr>
+<tr>
+<td>d</td>
+<td>building a debug version of your code.</td>
+<td>variant=debug</td>
+</tr>
+<tr>
+<td>p</td>
+<td>using the STLPort standard library rather than the default one supplied with your compiler.</td>
+<td>stdlib=stlport</td>
+</tr>
+</tbody>
+</table>
+<p>For example, if you build a debug version of your code for use with debug versions of the static runtime library and the STLPort standard library, the tag would be: -sgdp. If none of the above apply, the ABI tag is ommitted.</p>
+</blockquote>
+<p><strong>-x86</strong>
+    Architecture and address model tag: in the first letter, encodes the architecture as follows:</p>
+<blockquote>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Architecture</th>
+<th>Boost.Build option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>x85-32,x86-64</td>
+<td>architecture=x86</td>
+</tr>
+<tr>
+<td>a</td>
+<td>ARM</td>
+<td>architecture=arm</td>
+</tr>
+<tr>
+<td>i</td>
+<td>IA-64</td>
+<td>architecture=ia64</td>
+</tr>
+<tr>
+<td>s</td>
+<td>Sparc</td>
+<td>architecture=sparc</td>
+</tr>
+<tr>
+<td>m</td>
+<td>MIPS/SGI</td>
+<td>architecture=mips*</td>
+</tr>
+<tr>
+<td>p</td>
+<td>RS/6000 &amp; PowerPC</td>
+<td>architecture=power</td>
+</tr>
+</tbody>
+</table>
+<p>The two digits following the letter encode the address model an follows:</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Address model</th>
+<th>Boost.Build option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>32</td>
+<td>32 bit</td>
+<td>address-model=32</td>
+</tr>
+<tr>
+<td>64</td>
+<td>64 bit</td>
+<td>address-model=64</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<p><strong>-1_34</strong>
+    Version tag: the full Boost release number, with periods replaced by underscores. For example, version <em>1.31.1</em> would be tagged as "<em>-1_31_1</em>".</p>
+<p><strong>.lib</strong>
+    Extension: determined according to the operating system's usual convention. On most unix-style platforms the extensions are <code>.a</code> and <code>.so</code> for static libraries (archives) and shared libraries, respectively. On Windows, <code>.dll</code> indicates a shared library and .lib indicates a static or import library. Where supported by toolsets on unix variants, a full version extension is added (e.g. "<em>.so.1.34</em>") and a symbolic link to the library file, named without the trailing version number, will also be created.</p>
+<h2>6.4 Test Your Program</h2>
+<p>To test our subject extraction, we'll filter the following text file. Copy it out of your browser and save it as <strong>jayne.txt</strong>:</p>
+<div class="highlight"><pre><span></span><span class="n">To</span><span class="o">:</span> <span class="n">George</span> <span class="n">Shmidlap</span>
+<span class="n">From</span><span class="o">:</span> <span class="n">Rita</span> <span class="n">Marlowe</span>
+<span class="n">Subject</span><span class="o">:</span> <span class="n">Will</span> <span class="n">Success</span> <span class="n">Spoil</span> <span class="n">Rock</span> <span class="n">Hunter</span><span class="o">?</span>
+<span class="o">---</span>
+<span class="n">See</span> <span class="n">subject</span><span class="o">.</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>yourproject/
-├── content
-│   └── (pages)
-├── output
-├── develop_server.sh
-├── fabfile.py
-├── Makefile
-├── pelicanconf.py       # Main settings file
-└── publishconf.py       # Settings to use when ready to publish
+<p>Now, in a command prompt window, type:</p>
+<div class="highlight"><pre><span></span>path\to\compiled\example &lt; path\to\jayne.txt
 </pre></div>
 
 
-<h1>writing content</h1>
-<h2>articles and pages</h2>
-<p>Pelican considers “articles” to be chronological content, such as posts on a blog, and thus associated with a date.</p>
-<p>The idea behind “pages” is that they are usually not temporal in nature and are used for content that does not change very often.</p>
-<h2>file metadata</h2>
-<p>Pelican tries to be smart enough to get the information it needs from the file system (for instance, about the category of your articles), but some information you need to provide in the form of metadata inside your files.</p>
-<p>Metadata syntax for Markdown posts should follow this pattern:</p>
-<div class="highlight"><pre><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="kd">super</span> <span class="n">title</span>
-<span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
-<span class="n">Modified</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">05</span> <span class="mi">19</span><span class="o">:</span><span class="mi">30</span>
-<span class="n">Category</span><span class="o">:</span> <span class="n">Python</span>
-<span class="n">Tags</span><span class="o">:</span> <span class="n">pelican</span><span class="o">,</span> <span class="n">publishing</span>
-<span class="n">Slug</span><span class="o">:</span> <span class="n">my</span><span class="o">-</span><span class="kd">super</span><span class="o">-</span><span class="n">post</span>
-<span class="n">Authors</span><span class="o">:</span> <span class="n">Alexis</span> <span class="n">Metaireau</span><span class="o">,</span> <span class="n">Conan</span> <span class="n">Doyle</span>
-<span class="n">Summary</span><span class="o">:</span> <span class="n">Short</span> <span class="n">version</span> <span class="k">for</span> <span class="n">index</span> <span class="n">and</span> <span class="n">feeds</span>
-
-<span class="n">This</span> <span class="k">is</span> <span class="n">the</span> <span class="n">content</span> <span class="n">of</span> <span class="n">my</span> <span class="kd">super</span> <span class="n">blog</span> <span class="n">post</span><span class="o">.</span>
-</pre></div>
-
-
-<h2>pages</h2>
-<p>If you create a folder named <code>pages</code> inside the content folder, all the files in it will be used to generate static pages, such as About or Contact pages. (See example filesystem layout below.)</p>
-<p>You can use the <code>DISPLAY_PAGES_ON_MENU</code> setting to control whether all those pages are displayed in the primary navigation menu. (Default is <code>True</code>.)</p>
-<p>If you want to exclude any pages from being linked to or listed in the menu then add a <code>status: hidden</code> attribute to its metadata. This is useful for things like making error pages that fit the generated theme of your site.</p>
-<h2>linking to internal content</h2>
-<div class="highlight"><pre><span></span>it&#39;s useful i think
-</pre></div>
-
-
-<p>From Pelican 3.1 onwards, it is now possible to specify intra-site links to files in the <em>source</em> content hierarchy instead of files in the <em>generated</em> hierarchy. This makes it easier to link from the current post to other content that may be sitting alongside that post (instead of having to determine where the other content will be placed after site generation).</p>
-<p>To link to internal content (files in the <code>content</code> directory), use the following syntax for the link target: <code>{filename}path/to/file</code> Note: forward slashes, <code>/</code>, are the required path separator in the <code>{filename}</code> directive on all operating systems, including Windows.</p>
-<h3>linking to static files</h3>
-<p>Linking to non-article or non-page content uses the same <code>{filename}</code> syntax as described above. It is important to remember that those files will not be copied to the output directory unless the source directories containing them are included in the <code>STATIC_PATHS</code> setting of the project’s <code>pelicanconf.py</code> file. Pelican’s default configuration includes the <code>images</code> directory for this, but others must be added manually. Forgetting to do so will result in broken links.</p>
-<h3>mixed content in the same directory</h3>
-<p>Starting with Pelican 3.5, static files can safely share a source directory with page source files, without exposing the page sources in the generated site. Any such directory must be added to both <code>STATIC_PATHS</code> and <code>PAGE_PATHS</code> (or <code>STATIC_PATHS</code> and <code>ARTICLE_PATHS</code>). Pelican will identify and process the page source files normally, and copy the remaining files as if they lived in a separate directory reserved for static files.</p>
-<p>Note: Placing static and content source files together in the same source directory does not guarantee that they will end up in the same place in the generated site. The easiest way to do this is by using the <code>{attach}</code> link syntax (described below). Alternatively, the <code>STATIC_SAVE_AS</code>, <code>PAGE_SAVE_AS</code>, and <code>ARTICLE_SAVE_AS</code> settings (and the corresponding <code>*_URL</code> settings) can be configured to place files of different types together, just as they could in earlier versions of Pelican.</p>
-<h3>attaching static files</h3>
-<p>Starting with Pelican 3.5, static files can be “attached” to a page or article using this syntax for the link target: <code>{attach}path/to/file</code> This works like the <code>{filename}</code> syntax, but also relocates the static file into the linking document’s output directory. If the static file originates from a subdirectory beneath the linking document’s source, that relationship will be preserved on output. Otherwise, it will become a sibling of the linking document.</p>
-<p>This only works for linking to static files, and only when they originate from a directory included in the <code>STATIC_PATHS</code> setting.</p>
-<h3>linking to authors,categories,index and tags</h3>
-<p>You can link to authors, categories, index and tags using the <code>{author}name</code>, <code>{category}foobar</code>, <code>{index}</code> and <code>{tag}tagname</code> syntax.</p>
-<h3>deprecated internal link syntax</h3>
-<p>To remain compatible with earlier versions, Pelican still supports vertical bars (<code>||</code>) in addition to curly braces (<code>{}</code>) for internal links. For example: <code>|filename|an_article.rst</code>, <code>|tag|tagname</code>, <code>|category|foobar</code>. The syntax was changed from <code>||</code> to <code>{}</code> to avoid collision with Markdown extensions or reST directives. Support for the old syntax may eventually be removed.</p>
-<h2>importing an existing site</h2>
-<p>It is possible to import your site from WordPress, Tumblr, Dotclear, and RSS feeds using a simple script. See <a href="http://docs.getpelican.com/en/stable/importer.html#import"><code>Importing an existing site</code></a>.</p>
-<h2>translations</h2>
-<h2>syntax highlighting</h2>
-<h2>publishing drafts</h2>
-<h1>publish your site</h1>
-<h2>site generation</h2>
-<p>Once Pelican is installed and you have some content (e.g., in Markdown or reST format), you can convert your content into HTML via the <code>pelican</code> command, specifying the path to your content and (optionally) the path to your <a href="http://docs.getpelican.com/en/stable/settings.html">settings</a> file:</p>
-<div class="highlight"><pre><span></span>pelican /path/to/your/content/ [-s path/to/your/settings.py]
-</pre></div>
-
-
-<p>The above command will generate your site and save it in the <code>output/</code> folder, using the default theme to produce a simple site. The default theme consists of very simple <strong>HTML</strong> without styling and is provided so folks may use it as a basis for creating their own themes.</p>
-<p>When working on a single article or page, it is possible to generate only the file that corresponds to that content. To do this, use the <code>--write-selected</code> argument, like so:</p>
-<div class="highlight"><pre><span></span>pelican --write-selected output/posts/my-post-title.html
-</pre></div>
-
-
-<p>Note that you must specify the path to the generated output file — not the source content. To determine the output file name and location, use the <code>--debug</code> flag. If desired, <code>--write-selected</code> can take a comma-separated list of paths or can be configured as a setting. (See: <a href="http://docs.getpelican.com/en/stable/settings.html#writing-only-selected-content">Writing only selected content</a>)</p>
-<p>Pelican has other command-line switches available. Have a look at the help to see all the options you can use:</p>
-<div class="highlight"><pre><span></span>pelican --help
-</pre></div>
-
-
-<h3>viewing the generated files</h3>
-<p>The files generated by Pelican are static files, so you don’t actually need anything special to view them. You can use your browser to open the generated HTML files directly:</p>
-<div class="highlight"><pre><span></span>firefox output/index.html
-</pre></div>
-
-
-<p>Because the above method may have trouble locating your CSS and other linked assets, running a simple web server using Python will often provide a more reliable previewing experience.</p>
-<p>For Python 2, run:</p>
-<div class="highlight"><pre><span></span>cd output
-python -m SimpleHTTPServer
-</pre></div>
-
-
-<p>For Python 3,run:</p>
-<div class="highlight"><pre><span></span>cd output
-python -m http.server
-</pre></div>
-
-
-<p>Once the basic server has been started, you can preview your site at <a href="http://localhost:8000/">http://localhost:8000/</a></p>
-<h2>deployment</h2>
-<p>After you have generated your site, previewed it in your local development environment, and are ready to deploy it to production, you might first re-generate your site with any production-specific settings (e.g., analytics feeds, etc.) that you may have defined:</p>
-<div class="highlight"><pre><span></span>pelican content -s publishconf.py
-</pre></div>
-
-
-<p>To base your publish configuration on top of your <code>pelicanconf.py</code>, you can import your pelicanconf settings by including the following line in your <code>publishconf.py</code>:</p>
-<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pelicanconf</span> <span class="kn">import</span> <span class="o">*</span>
-</pre></div>
-
-
-<p>If you have generated a <code>publishconf.py</code> using <code>pelican-quickstart</code>, this line is included by default.</p>
-<p>The steps for deploying your site will depend on where it will be hosted. If you have SSH access to a server running Nginx or Apache, you might use the <code>rsync</code> tool to transmit your site files:</p>
-<div class="highlight"><pre><span></span>rsync -avc --delete output/ host.example.com:/var/www/your-site/
-</pre></div>
-
-
-<p>There are many other deployment options, some of which can be configured when first setting up your site via the <code>pelican-quickstart</code> command. See the <a href="http://docs.getpelican.com/en/stable/tips.html">Tips</a> page for detail on publishing via GitHub Pages.</p>
-<h2>automation</h2>
-<p>While the <code>pelican</code> command is the canonical way to generate your site, automation tools can be used to streamline the generation and publication flow. One of the questions asked during the <code>pelican-quickstart</code> process pertains to whether you want to automate site generation and publication. If you answered “<em>yes</em>” to that question, a <code>tasks.py</code> and <code>Makefile</code> will be generated in the root of your project. These files, pre-populated with certain information gleaned from other answers provided during the pelican-quickstart process, are meant as a starting point and should be customized to fit your particular needs and usage patterns. If you find one or both of these automation tools to be of limited utility, these files can deleted at any time and will not affect usage of the canonical pelican command.</p>
-<p>Following are automation tools that “wrap” the <code>pelican</code> command and can simplify the process of generating, previewing, and uploading your site.</p>
-<h3>invoke</h3>
-<p>The advantage of <a href="http://www.pyinvoke.org/">Invoke</a> is that it is written in Python and thus can be used in a wide range of environments. The downside is that it must be installed separately. Use the following command to install Invoke, prefixing with <code>sudo</code> if your environment requires it:</p>
-<div class="highlight"><pre><span></span>pip install invoke
-</pre></div>
-
-
-<p>Take a moment to open the <code>tasks.py</code> file that was generated in your project root. You will see a number of commands, any one of which can be renamed, removed, and/or customized to your liking. Using the out-of-the-box configuration, you can generate your site via:</p>
-<div class="highlight"><pre><span></span>invoke build
-</pre></div>
-
-
-<p>If you’d prefer to have Pelican automatically regenerate your site every time a change is detected (which is handy when testing locally), use the following command instead:</p>
-<div class="highlight"><pre><span></span>invoke regenerate
-</pre></div>
-
-
-<p>To serve the generated site so it can be previewed in your browser at <a href="http://localhost:8000/">http://localhost:8000/</a>:</p>
-<div class="highlight"><pre><span></span>invoke serve
-</pre></div>
-
-
-<p>If during the <code>pelican-quickstart</code> process you answered “<em>yes</em>” when asked whether you want to upload your site via SSH, you can use the following command to publish your site via rsync over SSH:</p>
-<div class="highlight"><pre><span></span>invoke publish
-</pre></div>
-
-
-<p>These are just a few of the commands available by default, so feel free to explore <code>tasks.py</code> and see what other commands are available. More importantly, don’t hesitate to customize <code>tasks.py</code> to suit your specific needs and preferences.</p>
-<h3>make</h3>
-<p>A <code>Makefile</code> is also automatically created for you when you say “yes” to the relevant question during the <code>pelican-quickstart</code> process. The advantage of this method is that the <code>make</code> command is built into most POSIX systems and thus doesn’t require installing anything else in order to use it. The downside is that non-POSIX systems (e.g., Windows) do not include <code>make</code>, and installing it on those systems can be a non-trivial task.</p>
-<p>If you want to use <code>make</code> to generate your site using the settings in <code>pelicanconf.py</code>, run:</p>
-<div class="highlight"><pre><span></span>make html
-</pre></div>
-
-
-<p>To generate the site for production, using the settings in <code>publishconf.py</code>, run:</p>
-<div class="highlight"><pre><span></span>make publish
-</pre></div>
-
-
-<p>If you’d prefer to have Pelican automatically regenerate your site every time a change is detected (which is handy when testing locally), use the following command instead:</p>
-<div class="highlight"><pre><span></span>make regenerate
-</pre></div>
-
-
-<p>To serve the generated site so it can be previewed in your browser at <a href="http://localhost:8000/">http://localhost:8000/</a>:</p>
-<div class="highlight"><pre><span></span>make serve
-</pre></div>
-
-
-<p>Normally you would need to run <code>make regenerate</code> and <code>make serve</code> in two separate terminal sessions, but you can run both at once via:</p>
-<div class="highlight"><pre><span></span>make devserver
-</pre></div>
-
-
-<p>The above command will simultaneously run Pelican in regeneration mode as well as serve the output at <a href="http://localhost:8000">http://localhost:8000</a>.</p>
-<p>When you’re ready to publish your site, you can upload it via the method(s) you chose during the <code>pelican-quickstart</code> questionnaire. For this example, we’ll use rsync over ssh:</p>
-<div class="highlight"><pre><span></span>make rsync_upload
-</pre></div>
-
-
-<p>(The default <code>Makefile</code> and <code>devserver.sh</code> scripts use the <code>python</code> and <code>pelican</code> executables to complete its tasks. If you want to use different executables, such as <code>python3</code>, you can set the <code>PY</code> and <code>PELICAN</code> environment variables, respectively, to override the default executable names.)</p>                </article>
+<p>The program should respond with the email subject, “Will Success Spoil Rock Hunter?”</p>
+<h1>7 Conclusion and Further Resources</h1>
+<p>This concludes your introduction to Boost and to integrating it with your programs. As you start using Boost in earnest, there are surely a few additional points you'll wish we had covered. One day we may have a “Book 2 in the Getting Started series” that addresses them. Until then, we suggest you pursue the following resources. If you can't find what you need, or there's anything we can do to make this document clearer, please post it to the <a href="https://www.boost.org/more/mailing_lists.htm#users">Boost Users' mailing list</a>.</p>
+<ul>
+<li><a href="https://www.boost.org/doc/libs/1_68_0/tools/build/index.html">Boost.Build reference manual</a></li>
+<li><a href="https://www.boost.org/more/mailing_lists.htm#users">Boost Users' mailing list</a></li>
+<li><a href="https://www.boost.org/more/mailing_lists.htm#jamboost">Boost.Build mailing list</a></li>
+<li><a href="https://www.boost.org/doc/libs/1_68_0/libs/index.html">Index of all Boost library documentation</a></li>
+</ul>
+<blockquote>
+<p><strong>Onward</strong></p>
+<p>Good luck, and have fun!</p>
+<p>—the Boost Developers</p>
+</blockquote>
+<h1><a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html">Orign page</a></h1>                </article>
             </aside><!-- /#featured -->
                 <section id="content" class="body">
                     <h1>Other articles</h1>
@@ -250,7 +355,36 @@ python -m http.server
 
             <li><article class="hentry">
                 <header>
-                    <h1><a href="https://fx-moon.github.io/git-learning-note.html" rel="bookmark"
+                    <h1><a href="/try-pelican.html" rel="bookmark"
+                           title="Permalink to try pelican">try pelican</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-11-12T00:00:00+08:00">
+                Published: 周一 12 十一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/fx-moon.html">fx-moon</a>
+        </address>
+<p>In <a href="/category/note.html">note</a>.</p>
+<p>tags: <a href="/tag/pelican.html">pelican</a> </p>
+</footer><!-- /.post-info -->                <h1>try pelican</h1>
+<blockquote>
+<p>I just forget the usage again and again,so I decided to WcRoIpTyE it=.=</p>
+</blockquote>
+<h1>getting start</h1>
+<h2>installing</h2>
+<p>Pelican currently runs best on Python 2.7.x and 3.3+; earlier versions of Python are not supported.</p>
+<p>You can install Pelican via several different methods. The simplest is via …</p>
+                <a class="readmore" href="/try-pelican.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/git-learning-note.html" rel="bookmark"
                            title="Permalink to git learning note">git learning note</a></h1>
                 </header>
 
@@ -261,9 +395,9 @@ python -m http.server
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="https://fx-moon.github.io/author/fx-moon.html">fx-moon</a>
+                By                         <a class="url fn" href="/author/fx-moon.html">fx-moon</a>
         </address>
-<p>In <a href="https://fx-moon.github.io/category/note.html">note</a>.</p>
+<p>In <a href="/category/note.html">note</a>.</p>
 
 </footer><!-- /.post-info -->                <hr>
 <h1>git learning note</h1>
@@ -272,7 +406,7 @@ python -m http.server
 <p>This creates a new subdirectory named .git that contains all of your necessary repository files — a Git repository skeleton. At this point, nothing in your project is tracked yet. </p>
 <h2>git add</h2>
 <p>If you want to start version-controlling existing files (as opposed to an empty directory …</p>
-                <a class="readmore" href="https://fx-moon.github.io/git-learning-note.html">read more</a>
+                <a class="readmore" href="/git-learning-note.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
                 </ol><!-- /#posts-list -->
@@ -284,13 +418,6 @@ python -m http.server
                             <li><a href="https://fx-moon.github.io/blog">blog</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-                            <li><a href="https://fx-moon.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
-
-                        </ul>
-                </div><!-- /.social -->
         </section><!-- /#extras -->
 
         <footer id="contentinfo" class="body">
