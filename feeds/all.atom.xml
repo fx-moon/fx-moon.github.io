@@ -1,5 +1,331 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>salt fish on the moon</title><link href="https://fx-moon.github.io/" rel="alternate"></link><link href="https://fx-moon.github.io/feeds/all.atom.xml" rel="self"></link><id>https://fx-moon.github.io/</id><updated>2018-11-12T00:00:00+08:00</updated><entry><title>try pelican</title><link href="https://fx-moon.github.io/try-pelican.html" rel="alternate"></link><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:fx-moon.github.io,2018-11-12:/try-pelican.html</id><summary type="html">&lt;h1&gt;try pelican&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>salt fish on the moon</title><link href="https://www.git.moe/" rel="alternate"></link><link href="https://www.git.moe/feeds/all.atom.xml" rel="self"></link><id>https://www.git.moe/</id><updated>2018-11-12T00:00:00+08:00</updated><entry><title>boost learning note (1) getting started on Windows</title><link href="https://www.git.moe/boost-learning-note-1-getting-started-on-windows.html" rel="alternate"></link><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-11-12:/boost-learning-note-1-getting-started-on-windows.html</id><summary type="html">&lt;h1&gt;1 Get boost&lt;/h1&gt;
+&lt;p&gt;just find a copy on &lt;a href="https://www.boost.org"&gt;https://www.boost.org&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;2 The boost distribution&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;boost_1_67_0&lt;span class="se"&gt;\ &lt;/span&gt;.................The “boost root directory”
+   index.htm .........A copy of www.boost.org starts here
+   boost&lt;span class="se"&gt;\ &lt;/span&gt;.........................All Boost Header files
+   lib&lt;span class="se"&gt;\ &lt;/span&gt;.....................precompiled library binaries
+   libs&lt;span class="se"&gt;\ &lt;/span&gt;............Tests, .cpps, docs, etc., by library
+     index.html ........Library …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;1 Get boost&lt;/h1&gt;
+&lt;p&gt;just find a copy on &lt;a href="https://www.boost.org"&gt;https://www.boost.org&lt;/a&gt;&lt;/p&gt;
+&lt;h1&gt;2 The boost distribution&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;boost_1_67_0&lt;span class="se"&gt;\ &lt;/span&gt;.................The “boost root directory”
+   index.htm .........A copy of www.boost.org starts here
+   boost&lt;span class="se"&gt;\ &lt;/span&gt;.........................All Boost Header files
+   lib&lt;span class="se"&gt;\ &lt;/span&gt;.....................precompiled library binaries
+   libs&lt;span class="se"&gt;\ &lt;/span&gt;............Tests, .cpps, docs, etc., by library
+     index.html ........Library documentation starts here
+     algorithm&lt;span class="se"&gt;\&lt;/span&gt;
+     any&lt;span class="se"&gt;\&lt;/span&gt;
+     array&lt;span class="se"&gt;\&lt;/span&gt;
+                     …more libraries…
+   status&lt;span class="se"&gt;\ &lt;/span&gt;.........................Boost-wide &lt;span class="nb"&gt;test&lt;/span&gt; suite
+   tools&lt;span class="se"&gt;\ &lt;/span&gt;...........Utilities, e.g. Boost.Build, quickbook, bcp
+   more&lt;span class="se"&gt;\ &lt;/span&gt;..........................Policy documents, etc.
+   doc&lt;span class="se"&gt;\ &lt;/span&gt;...............A subset of all Boost library docs
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;The path to the &lt;strong&gt;boost root directory&lt;/strong&gt; (often C:\Program Files\boost\boost_1_67_0) is sometimes referred to as &lt;em&gt;$BOOST_ROOT&lt;/em&gt; in documentation and mailing lists .&lt;/li&gt;
+&lt;li&gt;To compile anything in Boost, you need a directory containing the &lt;code&gt;boost\&lt;/code&gt; subdirectory in your &lt;code&gt;#include&lt;/code&gt; path. Specific steps for setting up &lt;code&gt;#include&lt;/code&gt; paths in Microsoft Visual Studio follow later in this document; if you use another IDE, please consult your product's documentation for instructions.&lt;/li&gt;
+&lt;li&gt;Since all of Boost's header files have the &lt;code&gt;.hpp&lt;/code&gt; extension, and live in the &lt;code&gt;boost\&lt;/code&gt; subdirectory of the boost root, your Boost &lt;code&gt;#include&lt;/code&gt; directives will look like:
+    &lt;code&gt;c
+    #include &amp;lt;boost/whatever.hpp&amp;gt;&lt;/code&gt;
+    or
+    &lt;code&gt;c
+    #include "boost/whatever.hpp"&lt;/code&gt;
+    depending on your preference regarding the use of angle bracket includes. Even Windows users can (and, for portability reasons, probably should) use forward slashes in #include directives; your compiler doesn't care.&lt;/li&gt;
+&lt;li&gt;Don't be distracted by the &lt;code&gt;doc\&lt;/code&gt; subdirectory; it only contains a subset of the Boost documentation. Start with &lt;code&gt;libs\index.html&lt;/code&gt; if you're looking for the whole enchilada.&lt;blockquote&gt;
+&lt;h2&gt;Header Organization&lt;/h2&gt;
+&lt;p&gt;The organization of Boost library headers isn't entirely uniform, but most libraries follow a few patterns:
+&lt;em&gt; Some older libraries and most very small libraries place all public headers directly into &lt;code&gt;boost\&lt;/code&gt;.
+&lt;/em&gt; Most libraries' public headers live in a subdirectory of boost\, named after the library. For example, you'll find the Python library's def.hpp header in
+  &lt;code&gt;bash
+  boost\python\def.hpp.&lt;/code&gt;
+&lt;em&gt; Some libraries have an “aggregate header” in boost\ that #includes all of the library's other headers. For example, Boost.Python's aggregate header is
+  &lt;code&gt;bash
+  boost\python.hpp.&lt;/code&gt;
+&lt;/em&gt; Most libraries place private headers in a subdirectory called &lt;code&gt;detail\&lt;/code&gt;, or &lt;code&gt;aux_\&lt;/code&gt;. Don't expect to find anything you can use in these directories.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1&gt;3 Header-Only Libraries&lt;/h1&gt;
+&lt;p&gt;The first thing many people want to know is, “how do I build Boost?” The good news is that often, there's nothing to build.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h2&gt;Nothing to Build?&lt;/h2&gt;
+&lt;p&gt;Most Boost libraries are header-only: they consist entirely of header files containing templates and inline functions, and require no separately-compiled library binaries or special treatment when linking.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;The only Boost libraries that must be built separately are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Boost.Chrono&lt;/li&gt;
+&lt;li&gt;Boost.Context&lt;/li&gt;
+&lt;li&gt;Boost.Filesystem&lt;/li&gt;
+&lt;li&gt;Boost.GraphParallel&lt;/li&gt;
+&lt;li&gt;Boost.IOStreams&lt;/li&gt;
+&lt;li&gt;Boost.Locale&lt;/li&gt;
+&lt;li&gt;Boost.Log &lt;code&gt;(see build documentation)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Boost.MPI&lt;/li&gt;
+&lt;li&gt;Boost.ProgramOptions&lt;/li&gt;
+&lt;li&gt;Boost.Python &lt;code&gt;(see the Boost.Python build documentation before building and installing it)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Boost.Regex&lt;/li&gt;
+&lt;li&gt;Boost.Serialization&lt;/li&gt;
+&lt;li&gt;Boost.Signals&lt;/li&gt;
+&lt;li&gt;Boost.System&lt;/li&gt;
+&lt;li&gt;Boost.Thread&lt;/li&gt;
+&lt;li&gt;Boost.Timer&lt;/li&gt;
+&lt;li&gt;Boost.Wave&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A few libraries have optional separately-compiled binaries:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Boost.DateTime&lt;/strong&gt; has a binary component that is only needed if you're using its to_string/from_string or serialization features, or if you're targeting Visual C++ 6.x or Borland.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Boost.Graph&lt;/strong&gt; also has a binary component that is only needed if you intend to parse GraphViz files.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Boost.Math&lt;/strong&gt; has binary components for the TR1 and C99 cmath functions.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Boost.Random&lt;/strong&gt; has a binary component which is only needed if you're using random_device.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Boost.Test&lt;/strong&gt; can be used in “header-only” or “separately compiled” mode, although &lt;em&gt;separate compilation is recommended for serious use&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Boost.Exception&lt;/strong&gt; provides non-intrusive implementation of &lt;code&gt;exception_ptr&lt;/code&gt; for 32-bit &lt;code&gt;_MSC_VER==1310&lt;/code&gt; and &lt;code&gt;_MSC_VER==1400&lt;/code&gt; which requires a separately-compiled binary. This is enabled by &lt;code&gt;#define BOOST_ENABLE_NON_INTRUSIVE_EXCEPTION_PTR&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;4 Build a Simple Program Using Boost&lt;/h1&gt;
+&lt;p&gt;To keep things simple, let's start by using a header-only library. The following program reads a sequence of integers from standard input, uses Boost.Lambda to multiply each number by three, and writes them to standard output:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;boost/lambda/lambda.hpp&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iterator&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="k"&gt;namespace&lt;/span&gt; &lt;span class="n"&gt;boost&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;lambda&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;istream_iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;for_each&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cin&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;_1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; &amp;quot;&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Copy the text of this program into a file called example.cpp.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;To build the examples in this guide, you can use an Integrated Development Environment (IDE) like Visual Studio, or you can issue commands from the &lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#command-prompt"&gt;command prompt&lt;/a&gt;. Since every IDE and compiler has different options and Microsoft's are by far the dominant compilers on Windows, we only give specific directions here for Visual Studio 2005 and .NET 2003 IDEs and their respective command prompt compilers (using the command prompt is a bit simpler). If you are using another compiler or IDE, it should be relatively easy to adapt these instructions to your environment.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#build-from-the-visual-studio-ide"&gt;4.1 Build From the Visual Studio IDE&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#or-build-from-the-command-prompt"&gt;4.2 Or, Build From the Command Prompt&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#errors-and-warnings"&gt;4.3 Errors and Warnings&lt;/a&gt;&lt;/h2&gt;
+&lt;h1&gt;5 Prepare to Use a Boost Library Binary&lt;/h1&gt;
+&lt;p&gt;If you want to use any of the separately-compiled Boost libraries, you'll need to acquire library binaries.&lt;/p&gt;
+&lt;h2&gt;5.1 Simplified Build From Source&lt;/h2&gt;
+&lt;p&gt;If you wish to build from source with Visual C++, you can use a simple build procedure described in this section. Open the command prompt and change your current directory to the Boost root directory. Then, type the following commands:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;bootstrap
+.&lt;span class="se"&gt;\b&lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The first command prepares the Boost.Build system for use. The second command invokes Boost.Build to build the separately-compiled Boost libraries. Please consult the &lt;a href="https://www.boost.org/build/doc/html/bbv2/overview/invocation.html"&gt;Boost.Build documentation&lt;/a&gt; for a list of allowed options.&lt;/p&gt;
+&lt;h2&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#or-build-binaries-from-source"&gt;5.2 Or,Build Binary From Source&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#expected-build-output"&gt;5.3 Expected Build Output&lt;/a&gt;&lt;/h2&gt;
+&lt;h2&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html#in-case-of-build-errors"&gt;5.4 In Case of Buid Errors&lt;/a&gt;&lt;/h2&gt;
+&lt;h1&gt;6 Link Your Program to a Boost Library&lt;/h1&gt;
+&lt;p&gt;To demonstrate linking with a Boost binary library, we'll use the following simple program that extracts the subject lines from emails. It uses the &lt;a href="https://www.boost.org/doc/libs/1_68_0/libs/regex/index.html"&gt;Boost.Regex&lt;/a&gt; library, which has a separately-compiled binary component.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;boost/regex.hpp&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;boost&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;regex&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;^Subject: (Re: |Aw: )*(.*)&amp;quot;&lt;/span&gt; &lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cin&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;getline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cin&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;boost&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;smatch&lt;/span&gt; &lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;boost&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;regex_match&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pat&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;matches&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;There are two main challenges associated with linking:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Tool configuration, e.g. choosing command-line options or IDE build settings.&lt;/li&gt;
+&lt;li&gt;Identifying the library binary, among all the build variants, whose compile configuration is compatible with the rest of your project.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Auto-Linking&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Most Windows compilers and linkers have so-called “auto-linking support,” which eliminates the second challenge. Special code in Boost header files detects your compiler options and uses that information to encode the name of the correct library into your object files; the linker selects the library with that name from the directories you've told it to search.
+The GCC toolchains (Cygwin and MinGW) are notable exceptions; GCC users should refer to the &lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/unix-variants.html#link-your-program-to-a-boost-library"&gt;linking instructions for Unix variant OSes&lt;/a&gt; for the appropriate command-line options to use.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;6.1 Link From Within the Visual Studio IDE&lt;/h2&gt;
+&lt;p&gt;Starting with the &lt;em&gt;header-only example project&lt;/em&gt; we created earlier:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Right-click &lt;strong&gt;example&lt;/strong&gt; in the Solution Explorer pane and select Properties from the resulting pop-up menu.&lt;/li&gt;
+&lt;li&gt;In Configuration &lt;em&gt;Properties &amp;gt; Linker &amp;gt; Additional Library Directories&lt;/em&gt;, enter the path to the Boost binaries, e.g.  &lt;em&gt;C:\Program Files\boost\boost_1_67_0\lib\&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;From the &lt;em&gt;Build&lt;/em&gt; menu, select &lt;em&gt;Build Solution&lt;/em&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;6.2 Or,Link From the Command Prompt&lt;/h2&gt;
+&lt;p&gt;For example, we can compile and link the above program from the Visual C++ command-line by simply adding the &lt;strong&gt;bold&lt;/strong&gt; text below to the command line we used earlier, assuming your Boost binaries are in &lt;em&gt;C:\Program Files\boost\boost_1_67_0\lib&lt;/em&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;cl /EHsc /I path\to\boost_1_67_0 example.cpp /link /LIBPATH:C:\Program Files\boost\boost_1_67_0\lib
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;6.3 Library Naming&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If, like Visual C++, your compiler supports auto-linking, you can probably skip to the next step.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In order to choose the right binary for your build configuration you need to know how Boost binaries are named. Each library filename is composed of a common sequence of elements that describe how it was built. For example, &lt;code&gt;libboost_regex-vc71-mt-d-x86-1_34.lib&lt;/code&gt; can be broken down into the following elements:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;lib&lt;/strong&gt;
+    Prefix: except on Microsoft Windows, every Boost library name begins with this string. On Windows, only ordinary static libraries use the lib prefix; import libraries and DLLs do not.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;boost_regex&lt;/strong&gt;
+    Library name: all boost library filenames begin with boost_.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-vc71&lt;/strong&gt;
+    Toolset tag: identifies the toolset and version used to build the binary.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-mt&lt;/strong&gt;
+    Threading tag: indicates that the library was built with multithreading support enabled. Libraries built without multithreading support can be identified by the absence of &lt;code&gt;-mt&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;-d&lt;/strong&gt;
+    ABI tag: encodes details that affect the library's interoperability with other compiled code. For each such feature, a single letter is added to the tag:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Use this library when:&lt;/th&gt;
+&lt;th&gt;Boost.Build option&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;s&lt;/td&gt;
+&lt;td&gt;linking statically to the C++ standard library and compiler runtime support libraries.&lt;/td&gt;
+&lt;td&gt;runtime-link=static&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;g&lt;/td&gt;
+&lt;td&gt;using debug versions of the standard and runtime support libraries.&lt;/td&gt;
+&lt;td&gt;runtime-debugging=on&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;y&lt;/td&gt;
+&lt;td&gt;using a special &lt;a href="https://www.boost.org/doc/libs/1_68_0/libs/python/doc/html/building/python_debugging_builds.html"&gt;debug build of Python&lt;/a&gt;.&lt;/td&gt;
+&lt;td&gt;python-debugging=on&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;d&lt;/td&gt;
+&lt;td&gt;building a debug version of your code.&lt;/td&gt;
+&lt;td&gt;variant=debug&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;using the STLPort standard library rather than the default one supplied with your compiler.&lt;/td&gt;
+&lt;td&gt;stdlib=stlport&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For example, if you build a debug version of your code for use with debug versions of the static runtime library and the STLPort standard library, the tag would be: -sgdp. If none of the above apply, the ABI tag is ommitted.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;-x86&lt;/strong&gt;
+    Architecture and address model tag: in the first letter, encodes the architecture as follows:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Architecture&lt;/th&gt;
+&lt;th&gt;Boost.Build option&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;x&lt;/td&gt;
+&lt;td&gt;x85-32,x86-64&lt;/td&gt;
+&lt;td&gt;architecture=x86&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;a&lt;/td&gt;
+&lt;td&gt;ARM&lt;/td&gt;
+&lt;td&gt;architecture=arm&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;i&lt;/td&gt;
+&lt;td&gt;IA-64&lt;/td&gt;
+&lt;td&gt;architecture=ia64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;s&lt;/td&gt;
+&lt;td&gt;Sparc&lt;/td&gt;
+&lt;td&gt;architecture=sparc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;m&lt;/td&gt;
+&lt;td&gt;MIPS/SGI&lt;/td&gt;
+&lt;td&gt;architecture=mips*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;p&lt;/td&gt;
+&lt;td&gt;RS/6000 &amp;amp; PowerPC&lt;/td&gt;
+&lt;td&gt;architecture=power&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;The two digits following the letter encode the address model an follows:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Key&lt;/th&gt;
+&lt;th&gt;Address model&lt;/th&gt;
+&lt;th&gt;Boost.Build option&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;32 bit&lt;/td&gt;
+&lt;td&gt;address-model=32&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;td&gt;64 bit&lt;/td&gt;
+&lt;td&gt;address-model=64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;-1_34&lt;/strong&gt;
+    Version tag: the full Boost release number, with periods replaced by underscores. For example, version &lt;em&gt;1.31.1&lt;/em&gt; would be tagged as "&lt;em&gt;-1_31_1&lt;/em&gt;".&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;.lib&lt;/strong&gt;
+    Extension: determined according to the operating system's usual convention. On most unix-style platforms the extensions are &lt;code&gt;.a&lt;/code&gt; and &lt;code&gt;.so&lt;/code&gt; for static libraries (archives) and shared libraries, respectively. On Windows, &lt;code&gt;.dll&lt;/code&gt; indicates a shared library and .lib indicates a static or import library. Where supported by toolsets on unix variants, a full version extension is added (e.g. "&lt;em&gt;.so.1.34&lt;/em&gt;") and a symbolic link to the library file, named without the trailing version number, will also be created.&lt;/p&gt;
+&lt;h2&gt;6.4 Test Your Program&lt;/h2&gt;
+&lt;p&gt;To test our subject extraction, we'll filter the following text file. Copy it out of your browser and save it as &lt;strong&gt;jayne.txt&lt;/strong&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;To&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;George&lt;/span&gt; &lt;span class="n"&gt;Shmidlap&lt;/span&gt;
+&lt;span class="n"&gt;From&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Rita&lt;/span&gt; &lt;span class="n"&gt;Marlowe&lt;/span&gt;
+&lt;span class="n"&gt;Subject&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Will&lt;/span&gt; &lt;span class="n"&gt;Success&lt;/span&gt; &lt;span class="n"&gt;Spoil&lt;/span&gt; &lt;span class="n"&gt;Rock&lt;/span&gt; &lt;span class="n"&gt;Hunter&lt;/span&gt;&lt;span class="o"&gt;?&lt;/span&gt;
+&lt;span class="o"&gt;---&lt;/span&gt;
+&lt;span class="n"&gt;See&lt;/span&gt; &lt;span class="n"&gt;subject&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, in a command prompt window, type:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;path\to\compiled\example &amp;lt; path\to\jayne.txt
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;The program should respond with the email subject, “Will Success Spoil Rock Hunter?”&lt;/p&gt;
+&lt;h1&gt;7 Conclusion and Further Resources&lt;/h1&gt;
+&lt;p&gt;This concludes your introduction to Boost and to integrating it with your programs. As you start using Boost in earnest, there are surely a few additional points you'll wish we had covered. One day we may have a “Book 2 in the Getting Started series” that addresses them. Until then, we suggest you pursue the following resources. If you can't find what you need, or there's anything we can do to make this document clearer, please post it to the &lt;a href="https://www.boost.org/more/mailing_lists.htm#users"&gt;Boost Users' mailing list&lt;/a&gt;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/tools/build/index.html"&gt;Boost.Build reference manual&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.boost.org/more/mailing_lists.htm#users"&gt;Boost Users' mailing list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.boost.org/more/mailing_lists.htm#jamboost"&gt;Boost.Build mailing list&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/libs/index.html"&gt;Index of all Boost library documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Onward&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Good luck, and have fun!&lt;/p&gt;
+&lt;p&gt;—the Boost Developers&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html"&gt;Orign page&lt;/a&gt;&lt;/h1&gt;</content><category term="boost"></category></entry><entry><title>try pelican</title><link href="https://www.git.moe/try-pelican.html" rel="alternate"></link><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-11-12:/try-pelican.html</id><summary type="html">&lt;h1&gt;try pelican&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I just forget the usage again and again,so I decided to WcRoIpTyE it=.=&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -218,14 +544,12 @@ python -m http.server
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;(The default &lt;code&gt;Makefile&lt;/code&gt; and &lt;code&gt;devserver.sh&lt;/code&gt; scripts use the &lt;code&gt;python&lt;/code&gt; and &lt;code&gt;pelican&lt;/code&gt; executables to complete its tasks. If you want to use different executables, such as &lt;code&gt;python3&lt;/code&gt;, you can set the &lt;code&gt;PY&lt;/code&gt; and &lt;code&gt;PELICAN&lt;/code&gt; environment variables, respectively, to override the default executable names.)&lt;/p&gt;</content></entry><entry><title>git learning note</title><link href="https://fx-moon.github.io/git-learning-note.html" rel="alternate"></link><published>2018-08-10T00:00:00+08:00</published><updated>2018-08-10T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:fx-moon.github.io,2018-08-10:/git-learning-note.html</id><summary type="html">&lt;hr&gt;
-&lt;h1&gt;git learning note&lt;/h1&gt;
+&lt;p&gt;(The default &lt;code&gt;Makefile&lt;/code&gt; and &lt;code&gt;devserver.sh&lt;/code&gt; scripts use the &lt;code&gt;python&lt;/code&gt; and &lt;code&gt;pelican&lt;/code&gt; executables to complete its tasks. If you want to use different executables, such as &lt;code&gt;python3&lt;/code&gt;, you can set the &lt;code&gt;PY&lt;/code&gt; and &lt;code&gt;PELICAN&lt;/code&gt; environment variables, respectively, to override the default executable names.)&lt;/p&gt;</content><category term="pelican"></category></entry><entry><title>git learning note</title><link href="https://www.git.moe/git-learning-note.html" rel="alternate"></link><published>2018-08-10T00:00:00+08:00</published><updated>2018-08-10T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-08-10:/git-learning-note.html</id><summary type="html">&lt;h1&gt;git learning note&lt;/h1&gt;
 &lt;hr&gt;
 &lt;h2&gt;git init&lt;/h2&gt;
 &lt;p&gt;This creates a new subdirectory named .git that contains all of your necessary repository files — a Git repository skeleton. At this point, nothing in your project is tracked yet. &lt;/p&gt;
 &lt;h2&gt;git add&lt;/h2&gt;
-&lt;p&gt;If you want to start version-controlling existing files (as opposed to an empty directory …&lt;/p&gt;</summary><content type="html">&lt;hr&gt;
-&lt;h1&gt;git learning note&lt;/h1&gt;
+&lt;p&gt;If you want to start version-controlling existing files (as opposed to an empty directory …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;git learning note&lt;/h1&gt;
 &lt;hr&gt;
 &lt;h2&gt;git init&lt;/h2&gt;
 &lt;p&gt;This creates a new subdirectory named .git that contains all of your necessary repository files — a Git repository skeleton. At this point, nothing in your project is tracked yet. &lt;/p&gt;
@@ -256,4 +580,4 @@ python -m http.server
 &lt;h2&gt;git log&lt;/h2&gt;
 &lt;p&gt;After you have created several commits, or if you have cloned a repository with an existing commit history, you’ll probably want to look back to see what has happened. The most basic and powerful tool to do this is the &lt;code&gt;git log&lt;/code&gt; command.&lt;/p&gt;
 &lt;p&gt;One of the more helpful options is &lt;code&gt;-p&lt;/code&gt; or &lt;code&gt;--patch&lt;/code&gt;, which shows the difference (the patch output) introduced in each commit. You can also limit the number of log entries displayed, such as using &lt;code&gt;-2&lt;/code&gt; to show only the last two entries.&lt;/p&gt;
-&lt;p&gt;If you want to see some abbreviated stats for each commit, you can use the &lt;code&gt;--stat&lt;/code&gt; option&lt;/p&gt;</content></entry></feed>
+&lt;p&gt;If you want to see some abbreviated stats for each commit, you can use the &lt;code&gt;--stat&lt;/code&gt; option&lt;/p&gt;</content><category term="git"></category></entry></feed>
