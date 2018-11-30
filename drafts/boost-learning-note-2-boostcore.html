@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <title>boost learning note (2) Boost.Core</title>
+        <link rel="stylesheet" href="https://www.git.moe/theme/css/main.css" />
+        <link href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="salt fish on the moon Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.git.moe/">salt fish on the moon </a></h1>
+                <nav><ul>
+                    <li><a href="https://www.git.moe/pages/about.html">About</a></li>
+                    <li class="active"><a href="https://www.git.moe/category/note.html">note</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.git.moe/drafts/boost-learning-note-2-boostcore.html" rel="bookmark"
+           title="Permalink to boost learning note (2) Boost.Core">boost learning note (2) Boost.Core</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-11-20T00:00:00+08:00">
+                Published: 周二 20 十一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://www.git.moe/author/fx-moon.html">fx-moon</a>
+        </address>
+<p>In <a href="https://www.git.moe/category/note.html">note</a>.</p>
+<p>tags: <a href="https://www.git.moe/tag/boost.html">boost</a> </p>
+</footer><!-- /.post-info -->      <h1>Introduction</h1>
+<p>The Boost.Core library is a collection of core utilities.
+The criteria for inclusion is that the utility component be:</p>
+<ul>
+<li>simple</li>
+<li>used by other Boost librarys, and</li>
+<li>not dependent on any other Boost modules except Core itself, Config, Assert, Static Assert, or Predef.</li>
+</ul>
+<h1>addressof</h1>
+<h2>Header <code>boost/core/addressof.hpp</code></h2>
+<p>The header <code>&lt;boost/core/addressof.hpp&gt;</code> defines the function template <code>boost::addressof.boost::addressof(x)</code> returns the address of x.
+Ordinarily, this address can be obtained by <code>&amp;x</code>, but the unary <code>&amp;</code> operator can be overloaded.
+boost::addressof avoids calling used-defined <code>operator&amp;()</code>.</p>
+<h2>Synopsis</h2>
+<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">boost</span>
+<span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="n">T</span><span class="o">*</span> <span class="n">addressof</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Example</h2>
+<div class="highlight"><pre><span></span><span class="cp">#include</span><span class="cpf">&lt;boost/core/addressof.hpp&gt;</span><span class="cp"></span>
+<span class="k">struct</span> <span class="n">useless_type</span> <span class="p">{</span> <span class="p">};</span>
+<span class="k">class</span> <span class="nc">nonaddressable</span>
+<span class="p">{</span>
+    <span class="n">useless_type</span> <span class="k">operator</span><span class="o">&amp;</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">nonaddressable</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">nonaddressable</span><span class="o">*</span> <span class="n">xp</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">addressof</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="c1">// nonaddressable* xpe = &amp;x; /*error*/</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Notes</h2>
+<blockquote>
+<p>In C++11 and above. boost::address is conditionally constexpr when possible. This is indicated by BOOST_CORE_NO_CONSTEXPR_ADDRESSOF not being defined.</p>
+<p>With supported compilers, boost::addressof is always constexpr by leveraging compiler intrinsics. This is indicated by BOOST_CORE_HAS_BUILTIN_ADDRESSOF being defined.</p>
+</blockquote>
+<h1>checked_delete</h1>
+<h2>Overview</h2>
+<p>The header <code>&lt;boost/checked_delete.hpp&gt;</code> defines two function templates, <code>checked_delete</code> and <code>checked_array_delete</code>, and two class templates, <code>checked_deleter</code> and <code>checked_array_deleter</code>.</p>
+<p>The C++ Standard allows, in 5.3.5/5, pointers to incomplete class types to be deleted with a delete-expression. When the class has a non-trivial destructor, or a class-specific operator delete, the behavior is undefined. Some compilers issue a warning when an incomplete type is deleted, but unfortunately, not all do, and programmers sometimes ignore or disable warnings.</p>
+<p>A particularly troublesome case is when a smart pointer's destructor, such as <code>boost::scoped_ptr&lt;T&gt;::~scoped_ptr</code>, is instantiated with an incomplete type. This can often lead to silent, hard to track failures.</p>
+<p>The supplied function and class templates can be used to prevent these problems, as they require a complete type, and cause a compilation error otherwise.</p>
+<h2>Synopsis</h2>
+<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">boost</span>
+<span class="p">{</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">checked_delete</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">p</span><span class="p">);</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">checked_array_delete</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">p</span><span class="p">);</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">checked_deleter</span><span class="p">;</span>
+    <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">checked_array_deleter</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>checked_delete</h2>
+<div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span><span class="kt">void</span> <span class="n">checked_delete</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">p</span><span class="p">);</span>
+</pre></div>
+
+
+<ul>
+<li>Requires: T must be a complete type. The expression <code>delete p</code> must be well-formed.</li>
+<li>Effects: <code>delete p;</code></li>
+</ul>
+<h2>checked_array_delete</h2>
+<div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">checked_array_delete</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span> <span class="n">p</span><span class="p">);</span>
+</pre></div>
+
+
+<ul>
+<li>Requires: T must be a complete type. The expression <code>delete [] p</code> must be well formed.</li>
+<li>Effects: <code>delete [] p;</code></li>
+</ul>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="https://fx-moon.github.io/blog">blog</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

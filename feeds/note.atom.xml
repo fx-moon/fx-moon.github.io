@@ -1,5 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>salt fish on the moon - note</title><link href="https://www.git.moe/" rel="alternate"></link><link href="https://www.git.moe/feeds/note.atom.xml" rel="self"></link><id>https://www.git.moe/</id><updated>2018-11-12T00:00:00+08:00</updated><entry><title>boost learning note (1) getting started on Windows</title><link href="https://www.git.moe/boost-learning-note-1-getting-started-on-windows.html" rel="alternate"></link><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-11-12:/boost-learning-note-1-getting-started-on-windows.html</id><summary type="html">&lt;h1&gt;1 Get boost&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>salt fish on the moon - note</title><link href="https://www.git.moe/" rel="alternate"></link><link href="https://www.git.moe/feeds/note.atom.xml" rel="self"></link><id>https://www.git.moe/</id><updated>2018-12-01T00:00:00+08:00</updated><entry><title>build C++ program with msvc and vscode</title><link href="https://www.git.moe/build-c-program-with-msvc-and-vscode.html" rel="alternate"></link><published>2018-12-01T00:00:00+08:00</published><updated>2018-12-01T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-12-01:/build-c-program-with-msvc-and-vscode.html</id><summary type="html">&lt;h1&gt;prepare&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Visual Studio or MSVC&lt;/li&gt;
+&lt;li&gt;Visual Studio Code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;getting started&lt;/h1&gt;
+&lt;h2&gt;build.bat&lt;/h2&gt;
+&lt;p&gt;put it in &lt;code&gt;${workspaceFolder}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;you should find your own &lt;code&gt;vcvarsall.bat&lt;/code&gt; path&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;call&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;E:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat&amp;quot;&lt;/span&gt; x64
+&lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;compilerflags&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;/Od /Zi /EHsc
+&lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;linkerflags&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;/OUT:a.exe …&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;prepare&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Visual Studio or MSVC&lt;/li&gt;
+&lt;li&gt;Visual Studio Code&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1&gt;getting started&lt;/h1&gt;
+&lt;h2&gt;build.bat&lt;/h2&gt;
+&lt;p&gt;put it in &lt;code&gt;${workspaceFolder}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;you should find your own &lt;code&gt;vcvarsall.bat&lt;/code&gt; path&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;call&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;E:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\VC\Auxiliary\Build\vcvarsall.bat&amp;quot;&lt;/span&gt; x64
+&lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;compilerflags&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;/Od /Zi /EHsc
+&lt;span class="k"&gt;set&lt;/span&gt; &lt;span class="nv"&gt;linkerflags&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;/OUT:a.exe
+cl.exe &lt;span class="nv"&gt;%compilerflags%&lt;/span&gt; *.cpp /link &lt;span class="nv"&gt;%linkerflags%&lt;/span&gt;
+&lt;span class="k"&gt;exit&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;tasks.json&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;2.0.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;tasks&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;label&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;build&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;shell&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;./build.bat&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;group&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;quot;kind&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;build&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;quot;isDefault&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+            &lt;span class="p"&gt;}&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;launch.json&lt;/h2&gt;
+&lt;p&gt;(default)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;version&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;0.2.0&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;quot;configurations&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+        &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;name&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;(Windows) Launch&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;cppvsdbg&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;request&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;launch&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;program&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${workspaceFolder}/a.exe&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;args&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;stopAtEntry&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;cwd&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;${workspaceFolder}&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;environment&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[],&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;quot;externalConsole&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="kc"&gt;true&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;run~&lt;/h1&gt;
+&lt;p&gt;press Ctrl-Shift-B to build&lt;/p&gt;
+&lt;p&gt;press Ctrl-Shift-F5 to run&lt;/p&gt;
+&lt;p&gt;press F5 to debug&lt;/p&gt;</content><category term="vscode"></category></entry><entry><title>boost learning note (1) getting started on Windows</title><link href="https://www.git.moe/boost-learning-note-1-getting-started-on-windows.html" rel="alternate"></link><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-11-12:/boost-learning-note-1-getting-started-on-windows.html</id><summary type="html">&lt;h1&gt;1 Get boost&lt;/h1&gt;
 &lt;p&gt;just find a copy on &lt;a href="https://www.boost.org"&gt;https://www.boost.org&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;2 The boost distribution&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;boost_1_67_0&lt;span class="se"&gt;\ &lt;/span&gt;.................The “boost root directory”
