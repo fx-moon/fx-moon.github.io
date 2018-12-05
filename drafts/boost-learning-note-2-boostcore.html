@@ -139,6 +139,152 @@ boost::addressof avoids calling used-defined <code>operator&amp;()</code>.</p>
 
 <span class="p">}</span>
 </pre></div>
+
+
+<h2>Conventional interface</h2>
+<p>The function <code>boost::core::demangle</code> is the conventional way to obtain demangled symbol name. It takes a mangled string such as those returned by <code>typeid(T).name()</code> on certain implementations such as <code>g++</code>, and returns its demangled, human-readable, form. In case if demangling fails (e.g. if name cannot be interpreted as a mangled name) the function returns name.</p>
+<h3>Example</h3>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/core/demangle.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;typeinfo&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">X</span>
+<span class="p">{</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span> <span class="o">=</span> <span class="k">typeid</span><span class="p">(</span> <span class="n">X</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="p">).</span><span class="n">name</span><span class="p">();</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// prints 1XIiE</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">demangle</span><span class="p">(</span> <span class="n">name</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// prints X&lt;int&gt;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Low level interface</h2>
+<p>In some cases more low level interface may be desirable. For example:</p>
+<ul>
+<li>Assuming that symbol demangling may fail, the user wants to be able to handle such errors.</li>
+<li>The user needs to post-process the demangled name (e.g. remove common namespaces), and allocating a temporary string with the complete demangled name is significant overhead.</li>
+</ul>
+<p>The function <code>boost::core::demangle_alloc</code> performs name demangling and returns a pointer to a string with the demangled name, if succeeded, or nullptr otherwise. The returned pointer must be passed to <code>boost::core::demangle_free</code> to reclaim resources. Note that on some platforms the pointer returned by <code>boost::core::demangle_alloc</code> may refer to the string denoted by name, so this string must be kept immutable for the whole life time of the returned pointer.</p>
+<p>The <code>boost::core::scoped_demangled_name</code> class is a scope guard that automates the calls to <code>boost::core::demangle_alloc</code> (on its construction) and <code>boost::core::demangle_free</code> (on destruction). The string with the demangled name can be obtained with its get method. Note that this method may return <code>nullptr</code> if demangling failed.</p>
+<h3>Example</h3>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/core/demangle.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;typeinfo&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">X</span>
+<span class="p">{</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span> <span class="o">=</span> <span class="k">typeid</span><span class="p">(</span> <span class="n">X</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="p">).</span><span class="n">name</span><span class="p">();</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">core</span><span class="o">::</span><span class="n">scoped_demangled_name</span> <span class="n">demangled</span><span class="p">(</span> <span class="n">name</span> <span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// prints 1XIiE</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">demangled</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">?</span> <span class="n">demangled</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">:</span> <span class="s">&quot;[unknown]&quot;</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// prints X&lt;int&gt;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h1>enable_if</h1>
+<h2>Overview</h2>
+<p>The <code>enable_if</code> family of templates is a set of tools to allow a function template or a class template specialization to include or exclude itself from a set of matching functions or specializations based on properties of its template arguments. For example, one can define function templates that are only enabled for, and thus only match, an arbitrary set of types defined by a traits class. The enable_if templates can also be applied to enable class template specializations. Applications of enable_if are discussed in length in [1] and [2].</p>
+<h2>Synopsis</h2>
+<div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">boost</span> <span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Cond</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">enable_if</span><span class="p">;</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Cond</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">disable_if</span><span class="p">;</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Cond</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">lazy_enable_if</span><span class="p">;</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Cond</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">lazy_disable_if</span><span class="p">;</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span> <span class="n">B</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">enable_if_c</span><span class="p">;</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span> <span class="n">B</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">disable_if_c</span><span class="p">;</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span> <span class="n">B</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">lazy_enable_if_c</span><span class="p">;</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span> <span class="n">B</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">lazy_disable_if_c</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Background</h2>
+<p>Sensible operation of template function overloading in C++ relies on the <strong>SFINAE</strong> (substitution-failure-is-not-an-error) principle [3]: if an invalid argument or return type is formed during the instantiation of a function template, the instantiation is removed from the overload resolution set instead of causing a compilation error. The following example, taken from [1], demonstrates why this is important:</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">negate</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">-</span><span class="n">i</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">F</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">F</span><span class="o">::</span><span class="n">result_type</span> <span class="n">negate</span><span class="p">(</span><span class="k">const</span> <span class="n">F</span><span class="o">&amp;</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">-</span><span class="n">f</span><span class="p">();</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>Suppose the compiler encounters the call <code>negate(1)</code>. The first definition is obviously a better match, but the compiler must nevertheless consider (and instantiate the prototypes) of both definitions to find this out. Instantiating the latter definition with <code>F</code> as <code>int</code> would result in:</p>
+<div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">::</span><span class="n">result_type</span> <span class="n">negate</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span><span class="o">&amp;</span><span class="p">);</span>
+</pre></div>
+
+
+<p>where the return type is invalid. If this were an error, adding an unrelated function template (that was never called) could break otherwise valid code. Due to the SFINAE principle the above example is not, however, erroneous. The latter definition of <code>negate</code> is simply removed from the overload resolution set.</p>
+<p>The <code>enable_if</code> templates are tools for controlled creation of the <strong>SFINAE</strong> conditions.</p>
+<h2>The enable_if templates</h2>
+<p>The names of the <code>enable_if</code> templates have three parts: an optional <code>lazy_</code> tag, either <code>enable_if</code> or <code>disable_if</code>, and an optional <code>_c</code> tag. All eight combinations of these parts are supported. The meaning of the <code>lazy_</code> tag is described in the section below. The second part of the name indicates whether a true condition argument should enable or disable the current overload. The third part of the name indicates whether the condition argument is a <code>bool</code> value (<code>_c</code> suffix), or a type containing a <code>static bool</code> constant named <code>value</code> (no suffix). The latter version interoperates with Boost.MPL.</p>
+<p>The definitions of <code>enable_if_c</code> and <code>enable_if</code> are as follows (we use <code>enable_if</code> templates unqualified but they are in the <code>boost</code> namespace).</p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="kt">bool</span> <span class="n">B</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">enable_if_c</span> <span class="p">{</span>
+    <span class="k">typedef</span> <span class="n">T</span> <span class="n">type</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">enable_if_c</span><span class="o">&lt;</span><span class="nb">false</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="p">{};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">Cond</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="nl">enable_if</span> <span class="p">:</span> <span class="k">public</span> <span class="n">enable_if_c</span><span class="o">&lt;</span><span class="n">Cond</span><span class="o">::</span><span class="n">value</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="p">{};</span>
+</pre></div>
+
+
+<p>An instantiation of the <code>enable_if_c</code> template with the parameter <code>B</code> as <code>true</code> contains a member type <code>type</code>, defined to be <code>T</code>. If <code>B</code> is false, no such member is defined. Thus <code>enable_if_c&lt;B, T&gt;::type</code> is either a valid or an invalid type expression, depending on the value of <code>B</code>. When valid, <code>enable_if_c&lt;B, T&gt;::type</code> equals <code>T</code>. The <code>enable_if_c</code> template can thus be used for controlling when functions are considered for overload resolution and when they are not. For example, the following function is defined for all arithmetic types (according to the classification of the Boost <strong>type_traits</strong> library):</p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">enable_if_c</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span>
+<span class="n">foo</span><span class="p">(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">t</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>The <code>disable_if_c</code> template is provided as well, and has the same functionality as <code>enable_if_c</code> except for the negated condition. The following function is enabled for all non-arithmetic types.</p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">disable_if_c</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">value</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span>
+<span class="n">bar</span><span class="p">(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">t</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<p>For easier syntax in some cases and interoperation with Boost.MPL we provide versions of the <code>enable_if</code> templates taking any type with a <code>bool</code> member constant named <code>value</code> as the condition argument. The MPL <code>bool_</code>, <code>and_</code>, <code>or_</code>, and <code>not_</code> templates are likely to be useful for creating such types. Also, the traits classes in the <code>Boost.Type_traits</code> library follow this convention. For example, the above example function <code>foo</code> can be alternatively written as:</p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">enable_if</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span>
+<span class="n">foo</span><span class="p">(</span><span class="n">T</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">t</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+
+<h2>Using enable_if</h2>
+<p>The <code>enable_if</code> templates are defined in <code>boost/utility/enable_if.hpp</code>, which is included by <code>boost/utility.hpp</code>.</p>
+<p>With respect to function templates, <code>enable_if</code> can be used in multiple different ways:</p>
+<ul>
+<li>As the return type of an instantiatied function</li>
+<li>As an extra parameter of an instantiated function</li>
+<li>As an extra template parameter (useful only in a compiler that supports <code>C++0x</code> default arguments for function template parameters, see <a href="https://www.boost.org/doc/libs/1_68_0/libs/core/doc/html/core/enable_if.html#core.enable_if.using_enable_if.enable_if_0x"><em>Enabling function templates</em> in <code>C++0x</code></a> for details.</li>
+</ul>
+<p>In the previous section, the return type form of enable_if was shown. As an example of using the form of enable_if that works via an extra function parameter, the foo function in the previous section could also be written as:</p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">foo</span><span class="p">(</span><span class="n">T</span> <span class="n">t</span><span class="p">,</span> <span class="k">typename</span> <span class="n">enable_if</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">type</span><span class="o">*</span> <span class="n">dummy</span> <span class="o">=</span> <span class="mi">0</span><span class="p">);</span>
+</pre></div>
+
+
+<p>Hence, an extra parameter of type <code>void*</code> is added, but it is given a default value to keep the parameter hidden from client code. Note that the second template argument was not given to <code>enable_if</code>, as the default <code>void</code> gives the desired behavior.</p>
+<p>Which way to write the enabler is largely a matter of taste, but for certain functions, only a subset of the options is possible:</p>
+<ul>
+<li>Many operators have a fixed number of arguments, thus enable_if must be used either in the return type or in an extra template parameter.</li>
+<li>Functions that have a variadic parameter list must use either the return type form or an extra template parameter.</li>
+<li>Constructors do not have a return type so you must use either an extra function parameter or an extra template parameter.</li>
+<li>Constructors that have a variadic parameter list must an extra template parameter.</li>
+<li>Conversion operators can only be written with an extra template parameter.</li>
+</ul>
+<h2>Enabling function templates in C++0x</h2>
     </div><!-- /.entry-content -->
 
   </article>
