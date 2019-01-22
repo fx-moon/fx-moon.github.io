@@ -285,6 +285,68 @@ boost::addressof avoids calling used-defined <code>operator&amp;()</code>.</p>
 <li>Conversion operators can only be written with an extra template parameter.</li>
 </ul>
 <h2>Enabling function templates in C++0x</h2>
+<p>In a compiler which supports C++0x default arguments for function template parameters, you can enable and disable function templates by adding an additional template parameter. This approach works in all situations where you would use either the return type form of enable_if or the function parameter form, including operators, constructors, variadic function templates, and even overloaded conversion operations.</p>
+<p>As an example:</p>
+<div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;boost/type_traits/is_arithmetic.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/type_traits/is_pointer.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;boost/utility/enable_if.hpp&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">test</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="c1">// A constructor that works for any argument list of size 10</span>
+    <span class="k">template</span><span class="o">&lt;</span> <span class="n">class</span><span class="p">...</span> <span class="n">T</span><span class="p">,</span>
+        <span class="k">typename</span> <span class="n">boost</span><span class="o">::</span><span class="n">enable_if_c</span><span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">...(</span> <span class="n">T</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">10</span><span class="p">,</span>
+            <span class="kt">int</span> <span class="o">&gt;::</span><span class="n">type</span> <span class="o">=</span> <span class="mi">0</span><span class="o">&gt;</span>
+    <span class="n">test</span><span class="p">(</span> <span class="n">T</span><span class="o">&amp;&amp;</span><span class="p">...</span> <span class="p">);</span>
+
+    <span class="c1">// A conversion operation that can convert to any arithmetic type</span>
+    <span class="k">template</span><span class="o">&lt;</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span>
+        <span class="k">typename</span> <span class="n">boost</span><span class="o">::</span><span class="n">enable_if</span><span class="o">&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">is_arithmetic</span><span class="o">&lt;</span> <span class="n">T</span> <span class="o">&gt;</span><span class="p">,</span>
+            <span class="kt">int</span> <span class="o">&gt;::</span><span class="n">type</span> <span class="o">=</span> <span class="mi">0</span><span class="o">&gt;</span>
+    <span class="k">operator</span> <span class="n">T</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="c1">// A conversion operation that can convert to any pointer type</span>
+    <span class="k">template</span><span class="o">&lt;</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span>
+        <span class="k">typename</span> <span class="n">boost</span><span class="o">::</span><span class="n">enable_if</span><span class="o">&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">is_pointer</span><span class="o">&lt;</span> <span class="n">T</span> <span class="o">&gt;</span><span class="p">,</span>
+            <span class="kt">int</span> <span class="o">&gt;::</span><span class="n">type</span> <span class="o">=</span> <span class="mi">0</span><span class="o">&gt;</span>
+    <span class="k">operator</span> <span class="n">T</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Works</span>
+    <span class="n">test</span> <span class="n">test_</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span> <span class="p">);</span>
+
+    <span class="c1">// Fails as expected</span>
+    <span class="n">test</span> <span class="n">fail_construction</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span> <span class="p">);</span>
+
+    <span class="c1">// Works by calling the conversion operator enabled for arithmetic types</span>
+    <span class="kt">int</span> <span class="n">arithmetic_object</span> <span class="o">=</span> <span class="n">test_</span><span class="p">;</span>
+
+    <span class="c1">// Works by calling the conversion operator enabled for pointer types</span>
+    <span class="kt">int</span><span class="o">*</span> <span class="n">pointer_object</span> <span class="o">=</span> <span class="n">test_</span><span class="p">;</span>
+
+    <span class="c1">// Fails as expected</span>
+    <span class="k">struct</span> <span class="p">{}</span> <span class="n">fail_conversion</span> <span class="o">=</span> <span class="n">test_</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<h2>Enabling template class specializations</h2>
+<p>Class template specializations can be enabled or disabled with <code>enable_if</code>. One extra template parameter needs to be added for the enabler expressions. This parameter has the default value <code>void</code>. For example:</p>
+<div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="k">class</span> <span class="nc">Enable</span> <span class="o">=</span> <span class="kt">void</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{...};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">enable_if</span><span class="o">&lt;</span><span class="n">is_integral</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">type</span><span class="o">&gt;</span> <span class="p">{...};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="n">claas</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">enable_if</span><span class="o">&lt;</span><span class="n">is_float</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;::</span><span class="n">type</span><span class="o">&gt;</span> <span class="p">{...};</span>
+</pre></div>
+
+
+<p>Instantiating <code>A</code> with any integral type matches the first specialization, whereas any floating point type matches the second one. All other tklypes match the primary template. The condition can be an;y compile-time boolean expression that depends on the template arguments of the dependent <code>value_type</code> from <code>T</code>if and only if <code>T::value_type</code> exists.</p>
     </div><!-- /.entry-content -->
 
   </article>
