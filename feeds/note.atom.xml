@@ -157,16 +157,16 @@ $len=32
 
 
 &lt;h2&gt;Create a Class&lt;/h2&gt;
-&lt;p&gt;```powershell
-class MyClass
-{
-    &lt;hidden|static&gt;
-    [typename]$&lt;member&gt;
-    MyClass()#Constructor
-    {
-        ...
-    }
-}&lt;/p&gt;</content><category term="powershell"></category></entry><entry><title>build C++ program with msvc and vscode</title><link href="https://www.git.moe/build-c-program-with-msvc-and-vscode.html" rel="alternate"></link><published>2018-12-01T00:00:00+08:00</published><updated>2018-12-01T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-12-01:/build-c-program-with-msvc-and-vscode.html</id><summary type="html">&lt;h1&gt;prepare&lt;/h1&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;class&lt;/span&gt; &lt;span class="n"&gt;MyClass&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;|&lt;/span&gt;&lt;span class="n"&gt;static&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="no"&gt;[typename]&lt;/span&gt;&lt;span class="p"&gt;$&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;member&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="n"&gt;MyClass&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="c"&gt;#Constructor&lt;/span&gt;
+    &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="p"&gt;...&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="powershell"></category></entry><entry><title>build C++ program with msvc and vscode</title><link href="https://www.git.moe/build-c-program-with-msvc-and-vscode.html" rel="alternate"></link><published>2018-12-01T00:00:00+08:00</published><updated>2018-12-01T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-12-01:/build-c-program-with-msvc-and-vscode.html</id><summary type="html">&lt;h1&gt;prepare&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Visual Studio or MSVC&lt;/li&gt;
 &lt;li&gt;Visual Studio Code&lt;/li&gt;
