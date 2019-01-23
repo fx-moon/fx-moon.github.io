@@ -1,5 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>salt fish on the moon - note</title><link href="https://www.git.moe/" rel="alternate"></link><link href="https://www.git.moe/feeds/note.atom.xml" rel="self"></link><id>https://www.git.moe/</id><updated>2018-12-01T00:00:00+08:00</updated><entry><title>build C++ program with msvc and vscode</title><link href="https://www.git.moe/build-c-program-with-msvc-and-vscode.html" rel="alternate"></link><published>2018-12-01T00:00:00+08:00</published><updated>2018-12-01T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-12-01:/build-c-program-with-msvc-and-vscode.html</id><summary type="html">&lt;h1&gt;prepare&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>salt fish on the moon - note</title><link href="https://www.git.moe/" rel="alternate"></link><link href="https://www.git.moe/feeds/note.atom.xml" rel="self"></link><id>https://www.git.moe/</id><updated>2019-01-22T00:00:00+08:00</updated><entry><title>Very Simple Powershell</title><link href="https://www.git.moe/very-simple-powershell.html" rel="alternate"></link><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2019-01-22:/very-simple-powershell.html</id><summary type="html">&lt;h1&gt;Basic Powershell&lt;/h1&gt;
+&lt;h2&gt;Variable&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;$&amp;lt;name&amp;gt;=&amp;lt;value&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$usrname=&amp;#39;John&amp;#39;
+$len=32
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;$null  -&amp;gt; null value&lt;/p&gt;
+&lt;p&gt;$true  -&amp;gt; boolean true&lt;/p&gt;
+&lt;p&gt;$false -&amp;gt; boolean false&lt;/p&gt;
+&lt;p&gt;$_     -&amp;gt; the variable currently being processed&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Data Structure&lt;/h2&gt;
+&lt;h3&gt;Array&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;=@(&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;,&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;,...)&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;100&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="n"&gt;2333&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Hash Table&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;=@{&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;,...}&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;[&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Process Control&lt;/h2&gt;
+&lt;h3&gt;Branch&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;elseif&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;else …&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;</summary><content type="html">&lt;h1&gt;Basic Powershell&lt;/h1&gt;
+&lt;h2&gt;Variable&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;$&amp;lt;name&amp;gt;=&amp;lt;value&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$usrname=&amp;#39;John&amp;#39;
+$len=32
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;blockquote&gt;
+&lt;p&gt;$null  -&amp;gt; null value&lt;/p&gt;
+&lt;p&gt;$true  -&amp;gt; boolean true&lt;/p&gt;
+&lt;p&gt;$false -&amp;gt; boolean false&lt;/p&gt;
+&lt;p&gt;$_     -&amp;gt; the variable currently being processed&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2&gt;Data Structure&lt;/h2&gt;
+&lt;h3&gt;Array&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;=@(&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;,&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;,...)&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;100&lt;/span&gt;&lt;span class="p"&gt;]=&lt;/span&gt;&lt;span class="n"&gt;2333&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Hash Table&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;=@{&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;=&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;value&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;,...}&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;[&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;]&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Process Control&lt;/h2&gt;
+&lt;h3&gt;Branch&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;elseif&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;else&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;switch&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;condition&lt;/span&gt; &lt;span class="p"&gt;{...;&lt;/span&gt;&lt;span class="k"&gt;break&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="k"&gt;default&lt;/span&gt; &lt;span class="p"&gt;{...}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;-gt greater than
+-lt less than
+-eq equal
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Circulation&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt;&lt;span class="p"&gt;(;;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;foreach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;$var&lt;/span&gt; &lt;span class="k"&gt;in&lt;/span&gt; &lt;span class="nv"&gt;$set&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;do&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="p"&gt;...&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="k"&gt;while&lt;/span&gt;&lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="k"&gt;until&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h1&gt;.NET &amp;amp; Class&lt;/h1&gt;
+&lt;h2&gt;Class&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c"&gt;#show all members of a object&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; &lt;span class="n"&gt;gm&lt;/span&gt;
+&lt;span class="c"&gt;#call member function&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="c"&gt;#visit member variable&lt;/span&gt;
+&lt;span class="nv"&gt;$var&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;.NET&lt;/h2&gt;
+&lt;p&gt;some methods to creat a new object&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;$obj&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;New-Object&lt;/span&gt; &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt;
+&lt;span class="nv"&gt;$obj&lt;/span&gt;
+&lt;span class="nv"&gt;$obj&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;New-Object&lt;/span&gt; &lt;span class="n"&gt;System&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt; &lt;span class="n"&gt;3&lt;/span&gt; &lt;span class="n"&gt;6&lt;/span&gt;
+&lt;span class="nv"&gt;$obj&lt;/span&gt;
+&lt;span class="nv"&gt;$obj&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="no"&gt;[System.Version]&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;New&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="nv"&gt;$obj&lt;/span&gt;
+&lt;span class="nv"&gt;$obj&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="no"&gt;[System.Version]&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="n"&gt;New&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="nv"&gt;$obj&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;type conversion&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nv"&gt;$obj&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ToString&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="no"&gt;[int]&lt;/span&gt;&lt;span class="n"&gt;1&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;7&lt;/span&gt;
+&lt;span class="no"&gt;[System.Version]&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;3.6.0.0&amp;#39;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h2&gt;Create a Class&lt;/h2&gt;
+&lt;p&gt;```powershell
+class MyClass
+{
+    &lt;hidden|static&gt;
+    [typename]$&lt;member&gt;
+    MyClass()#Constructor
+    {
+        ...
+    }
+}&lt;/p&gt;</content><category term="powershell"></category></entry><entry><title>build C++ program with msvc and vscode</title><link href="https://www.git.moe/build-c-program-with-msvc-and-vscode.html" rel="alternate"></link><published>2018-12-01T00:00:00+08:00</published><updated>2018-12-01T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-12-01:/build-c-program-with-msvc-and-vscode.html</id><summary type="html">&lt;h1&gt;prepare&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Visual Studio or MSVC&lt;/li&gt;
 &lt;li&gt;Visual Studio Code&lt;/li&gt;
