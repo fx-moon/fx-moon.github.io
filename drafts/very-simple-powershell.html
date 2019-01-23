@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="english">
+<head>
+        <meta charset="utf-8" />
+        <title>Very Simple Powershell</title>
+        <link rel="stylesheet" href="https://www.git.moe/theme/css/main.css" />
+        <link href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="salt fish on the moon Atom Feed" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://www.git.moe/">salt fish on the moon </a></h1>
+                <nav><ul>
+                    <li><a href="https://www.git.moe/pages/about.html">About</a></li>
+                    <li class="active"><a href="https://www.git.moe/category/note.html">note</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="https://www.git.moe/drafts/very-simple-powershell.html" rel="bookmark"
+           title="Permalink to Very Simple Powershell">Very Simple Powershell</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2019-01-22T00:00:00+08:00">
+                Published: 周二 22 一月 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://www.git.moe/author/fx-moon.html">fx-moon</a>
+        </address>
+<p>In <a href="https://www.git.moe/category/note.html">note</a>.</p>
+<p>tags: <a href="https://www.git.moe/tag/powershell.html">powershell</a> </p>
+</footer><!-- /.post-info -->      <h1>Basic Powershell</h1>
+<h2>Variable</h2>
+<p><code>$&lt;name&gt;=&lt;value&gt;</code></p>
+<div class="highlight"><pre><span></span>$usrname=&#39;John&#39;
+$len=32
+</pre></div>
+
+
+<blockquote>
+<p>$null  -&gt; null value</p>
+<p>$true  -&gt; boolean true</p>
+<p>$false -&gt; boolean false</p>
+<p>$_     -&gt; the variable currently being processed</p>
+</blockquote>
+<h2>Data Structure</h2>
+<h3>Array</h3>
+<div class="highlight"><pre><span></span><span class="nv">$var</span><span class="p">=@(&lt;</span><span class="n">element</span><span class="p">&gt;,&lt;</span><span class="n">element</span><span class="p">&gt;,...)</span>
+<span class="nv">$var</span><span class="p">[</span><span class="n">0</span><span class="p">]</span>
+<span class="nv">$var</span><span class="p">[</span><span class="n">100</span><span class="p">]=</span><span class="n">2333</span>
+</pre></div>
+
+
+<h3>Hash Table</h3>
+<div class="highlight"><pre><span></span><span class="nv">$var</span><span class="p">=@{&lt;</span><span class="n">key</span><span class="p">&gt;=&lt;</span><span class="n">value</span><span class="p">&gt;,...}</span>
+<span class="nv">$var</span><span class="p">[&lt;</span><span class="n">key</span><span class="p">&gt;]</span>
+<span class="nv">$var</span><span class="p">.</span><span class="n">key</span>
+</pre></div>
+
+
+<h2>Process Control</h2>
+<h3>Branch</h3>
+<div class="highlight"><pre><span></span><span class="k">if</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+<span class="k">elseif</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+<span class="k">else</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">switch</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">condition</span> <span class="p">{...;</span><span class="k">break</span><span class="p">}</span>
+    <span class="k">default</span> <span class="p">{...}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>-gt greater than
+-lt less than
+-eq equal
+</pre></div>
+
+
+<h3>Circulation</h3>
+<div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(;;)</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">foreach</span><span class="p">(</span><span class="nv">$var</span> <span class="k">in</span> <span class="nv">$set</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">while</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+<span class="k">do</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">}</span>
+<span class="k">while</span><span class="p">/</span><span class="k">until</span><span class="p">()</span>
+</pre></div>
+
+
+<h1>.NET &amp; Class</h1>
+<h2>Class</h2>
+<div class="highlight"><pre><span></span><span class="c">#show all members of a object</span>
+<span class="nv">$var</span> <span class="p">|</span> <span class="n">gm</span>
+<span class="c">#call member function</span>
+<span class="nv">$var</span><span class="p">.</span><span class="n">fun</span><span class="p">()</span>
+<span class="c">#visit member variable</span>
+<span class="nv">$var</span><span class="p">.</span><span class="n">var</span>
+</pre></div>
+
+
+<h2>.NET</h2>
+<p>some methods to creat a new object</p>
+<div class="highlight"><pre><span></span><span class="nv">$obj</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Version</span>
+<span class="nv">$obj</span>
+<span class="nv">$obj</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Version</span> <span class="n">3</span> <span class="n">6</span>
+<span class="nv">$obj</span>
+<span class="nv">$obj</span> <span class="p">=</span> <span class="no">[System.Version]</span><span class="p">::</span><span class="n">New</span><span class="p">()</span>
+<span class="nv">$obj</span>
+<span class="nv">$obj</span> <span class="p">=</span> <span class="no">[System.Version]</span><span class="p">::</span><span class="n">New</span><span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">6</span><span class="p">)</span>
+<span class="nv">$obj</span>
+</pre></div>
+
+
+<p>type conversion</p>
+<div class="highlight"><pre><span></span><span class="nv">$obj</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span>
+<span class="no">[int]</span><span class="n">1</span><span class="p">.</span><span class="n">7</span>
+<span class="no">[System.Version]</span><span class="s1">&#39;3.6.0.0&#39;</span>
+</pre></div>
+
+
+<h2>Create a Class</h2>
+<p>```powershell
+class MyClass
+{
+    <hidden|static>
+    [typename]$<member>
+    MyClass()#Constructor
+    {
+        ...
+    }
+}</p>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://cookiery.cn/">cookiery</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
