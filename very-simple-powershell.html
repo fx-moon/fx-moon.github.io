@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="english">
+<html lang="en">
 <head>
         <meta charset="utf-8" />
         <title>Very Simple Powershell</title>
-        <link rel="stylesheet" href="https://www.git.moe/theme/css/main.css" />
-        <link href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="salt fish on the moon Atom Feed" />
+        <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="https://www.git.moe/">salt fish on the moon </a></h1>
+                <h1><a href="/">salt fish on the moon</a></h1>
                 <nav><ul>
-                    <li><a href="https://www.git.moe/pages/about.html">About</a></li>
-                    <li class="active"><a href="https://www.git.moe/category/note.html">note</a></li>
-                    <li><a href="https://www.git.moe/category/record.html">record</a></li>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li class="active"><a href="/category/note.html">note</a></li>
+                    <li><a href="/category/record.html">record</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="https://www.git.moe/very-simple-powershell.html" rel="bookmark"
+        <a href="/very-simple-powershell.html" rel="bookmark"
            title="Permalink to Very Simple Powershell">Very Simple Powershell</a></h1>
     </header>
 
@@ -31,15 +30,15 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="https://www.git.moe/author/fx-moon.html">fx-moon</a>
+                By                         <a class="url fn" href="/author/fx-moon.html">fx-moon</a>
         </address>
-<p>In <a href="https://www.git.moe/category/note.html">note</a>.</p>
-<p>tags: <a href="https://www.git.moe/tag/powershell.html">powershell</a> </p>
+<p>In <a href="/category/note.html">note</a>.</p>
+<p>tags: <a href="/tag/powershell.html">powershell</a> </p>
 </footer><!-- /.post-info -->      <h1>Basic Powershell</h1>
 <h2>Variable</h2>
 <p><code>$&lt;name&gt;=&lt;value&gt;</code></p>
-<div class="highlight"><pre><span></span>$usrname=&#39;John&#39;
-$len=32
+<div class="highlight"><pre><span></span><span class="err">$</span><span class="n">usrname</span><span class="o">=</span><span class="s1">&#39;John&#39;</span>
+<span class="err">$</span><span class="n">len</span><span class="o">=</span><span class="mi">32</span>
 </pre></div>
 
 
@@ -89,9 +88,9 @@ $len=32
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>-gt greater than
--lt less than
--eq equal
+<div class="highlight"><pre><span></span><span class="o">-</span><span class="n">gt</span> <span class="n">greater</span> <span class="k">than</span>
+<span class="o">-</span><span class="n">lt</span> <span class="k">less</span> <span class="k">than</span>
+<span class="o">-</span><span class="n">eq</span> <span class="n">equal</span>
 </pre></div>
 
 
@@ -125,7 +124,7 @@ $len=32
 <h1>.NET &amp; Class</h1>
 <h2>Class</h2>
 <div class="highlight"><pre><span></span><span class="c">#show all members of a object</span>
-<span class="nv">$var</span> <span class="p">|</span> <span class="n">gm</span>
+<span class="nv">$var</span> <span class="p">|</span> <span class="nb">gm</span>
 <span class="c">#call member function</span>
 <span class="nv">$var</span><span class="p">.</span><span class="n">fun</span><span class="p">()</span>
 <span class="c">#visit member variable</span>
@@ -172,14 +171,18 @@ $len=32
                 <div class="blogroll">
                         <h2>links</h2>
                         <ul>
-                            <li><a href="https://github.com/fx-moon">Github</a></li>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->

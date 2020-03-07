@@ -1,35 +1,34 @@
 <!DOCTYPE html>
-<html lang="english">
+<html lang="en">
 <head>
         <meta charset="utf-8" />
         <title>salt fish on the moon - pelican</title>
-        <link rel="stylesheet" href="https://www.git.moe/theme/css/main.css" />
-        <link href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="salt fish on the moon Atom Feed" />
+        <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="https://www.git.moe/">salt fish on the moon </a></h1>
+                <h1><a href="/">salt fish on the moon</a></h1>
                 <nav><ul>
-                    <li><a href="https://www.git.moe/pages/about.html">About</a></li>
-                    <li><a href="https://www.git.moe/category/note.html">note</a></li>
-                    <li><a href="https://www.git.moe/category/record.html">record</a></li>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li><a href="/category/note.html">note</a></li>
+                    <li><a href="/category/record.html">record</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://www.git.moe/try-pelican.html">try pelican</a></h1>
+                    <h1 class="entry-title"><a href="/try-pelican.html">try pelican</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2018-11-12T00:00:00+08:00">
                 Published: 周一 12 十一月 2018
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="https://www.git.moe/author/fx-moon.html">fx-moon</a>
+                By                         <a class="url fn" href="/author/fx-moon.html">fx-moon</a>
         </address>
-<p>In <a href="https://www.git.moe/category/note.html">note</a>.</p>
-<p>tags: <a href="https://www.git.moe/tag/pelican.html">pelican</a> </p>
+<p>In <a href="/category/note.html">note</a>.</p>
+<p>tags: <a href="/tag/pelican.html">pelican</a> </p>
 </footer><!-- /.post-info --><h1>try pelican</h1>
 <blockquote>
 <p>I just forget the usage again and again,so I decided to WcRoIpTyE it=.=</p>
@@ -38,39 +37,39 @@
 <h2>installing</h2>
 <p>Pelican currently runs best on Python 2.7.x and 3.3+; earlier versions of Python are not supported.</p>
 <p>You can install Pelican via several different methods. The simplest is via pip:</p>
-<div class="highlight"><pre><span></span>pip install pelican
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">pelican</span>
 </pre></div>
 
 
 <p>If you plan on using Markdown as a markup format, you’ll need to install the Markdown library:</p>
-<div class="highlight"><pre><span></span>pip install markdown
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">markdown</span>
 </pre></div>
 
 
 <p>Typographical enhancements can be enabled in your settings file, but first the requisite Typogrify library must be installed:</p>
-<div class="highlight"><pre><span></span>pip install typogrify
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">typogrify</span>
 </pre></div>
 
 
 <h2>upgrading</h2>
-<div class="highlight"><pre><span></span>pip install --upgrade pelican
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="c1">--upgrade pelican</span>
 </pre></div>
 
 
 <h2>kickstart your site</h2>
-<div class="highlight"><pre><span></span>pelican-quickstart
+<div class="highlight"><pre><span></span><span class="n">pelican</span><span class="o">-</span><span class="n">quickstart</span>
 </pre></div>
 
 
-<div class="highlight"><pre><span></span>yourproject/
-├── content
-│   └── (pages)
-├── output
-├── develop_server.sh
-├── fabfile.py
-├── Makefile
-├── pelicanconf.py       # Main settings file
-└── publishconf.py       # Settings to use when ready to publish
+<div class="highlight"><pre><span></span><span class="n">yourproject</span><span class="o">/</span>
+<span class="err">├──</span> <span class="n">content</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="p">(</span><span class="n">pages</span><span class="p">)</span>
+<span class="err">├──</span> <span class="k">output</span>
+<span class="err">├──</span> <span class="n">develop_server</span><span class="p">.</span><span class="n">sh</span>
+<span class="err">├──</span> <span class="n">fabfile</span><span class="p">.</span><span class="n">py</span>
+<span class="err">├──</span> <span class="n">Makefile</span>
+<span class="err">├──</span> <span class="n">pelicanconf</span><span class="p">.</span><span class="n">py</span>       <span class="o">#</span> <span class="n">Main</span> <span class="n">settings</span> <span class="n">file</span>
+<span class="err">└──</span> <span class="n">publishconf</span><span class="p">.</span><span class="n">py</span>       <span class="o">#</span> <span class="n">Settings</span> <span class="k">to</span> <span class="n">use</span> <span class="k">when</span> <span class="n">ready</span> <span class="k">to</span> <span class="n">publish</span>
 </pre></div>
 
 
@@ -81,16 +80,16 @@
 <h2>file metadata</h2>
 <p>Pelican tries to be smart enough to get the information it needs from the file system (for instance, about the category of your articles), but some information you need to provide in the form of metadata inside your files.</p>
 <p>Metadata syntax for Markdown posts should follow this pattern:</p>
-<div class="highlight"><pre><span></span><span class="n">Title</span><span class="o">:</span> <span class="n">My</span> <span class="kd">super</span> <span class="n">title</span>
-<span class="n">Date</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span><span class="o">:</span><span class="mi">20</span>
-<span class="n">Modified</span><span class="o">:</span> <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">05</span> <span class="mi">19</span><span class="o">:</span><span class="mi">30</span>
-<span class="n">Category</span><span class="o">:</span> <span class="n">Python</span>
-<span class="n">Tags</span><span class="o">:</span> <span class="n">pelican</span><span class="o">,</span> <span class="n">publishing</span>
-<span class="n">Slug</span><span class="o">:</span> <span class="n">my</span><span class="o">-</span><span class="kd">super</span><span class="o">-</span><span class="n">post</span>
-<span class="n">Authors</span><span class="o">:</span> <span class="n">Alexis</span> <span class="n">Metaireau</span><span class="o">,</span> <span class="n">Conan</span> <span class="n">Doyle</span>
-<span class="n">Summary</span><span class="o">:</span> <span class="n">Short</span> <span class="n">version</span> <span class="k">for</span> <span class="n">index</span> <span class="n">and</span> <span class="n">feeds</span>
+<div class="highlight"><pre><span></span><span class="nv">Title</span>: <span class="nv">My</span> <span class="nv">super</span> <span class="nv">title</span>
+<span class="nv">Date</span>: <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">03</span> <span class="mi">10</span>:<span class="mi">20</span>
+<span class="nv">Modified</span>: <span class="mi">2010</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">05</span> <span class="mi">19</span>:<span class="mi">30</span>
+<span class="nv">Category</span>: <span class="nv">Python</span>
+<span class="nv">Tags</span>: <span class="nv">pelican</span>, <span class="nv">publishing</span>
+<span class="nv">Slug</span>: <span class="nv">my</span><span class="o">-</span><span class="nv">super</span><span class="o">-</span><span class="nv">post</span>
+<span class="nv">Authors</span>: <span class="nv">Alexis</span> <span class="nv">Metaireau</span>, <span class="nv">Conan</span> <span class="nv">Doyle</span>
+<span class="nv">Summary</span>: <span class="nv">Short</span> <span class="nv">version</span> <span class="k">for</span> <span class="nv">index</span> <span class="nv">and</span> <span class="nv">feeds</span>
 
-<span class="n">This</span> <span class="k">is</span> <span class="n">the</span> <span class="n">content</span> <span class="n">of</span> <span class="n">my</span> <span class="kd">super</span> <span class="n">blog</span> <span class="n">post</span><span class="o">.</span>
+<span class="nv">This</span> <span class="nv">is</span> <span class="nv">the</span> <span class="nv">content</span> <span class="nv">of</span> <span class="nv">my</span> <span class="nv">super</span> <span class="nv">blog</span> <span class="nv">post</span>.
 </pre></div>
 
 
@@ -99,7 +98,7 @@
 <p>You can use the <code>DISPLAY_PAGES_ON_MENU</code> setting to control whether all those pages are displayed in the primary navigation menu. (Default is <code>True</code>.)</p>
 <p>If you want to exclude any pages from being linked to or listed in the menu then add a <code>status: hidden</code> attribute to its metadata. This is useful for things like making error pages that fit the generated theme of your site.</p>
 <h2>linking to internal content</h2>
-<div class="highlight"><pre><span></span>it&#39;s useful i think
+<div class="highlight"><pre><span></span><span class="n">it</span><span class="err">&#39;</span><span class="n">s</span> <span class="n">useful</span> <span class="n">i</span> <span class="n">think</span>
 </pre></div>
 
 
@@ -125,45 +124,45 @@
 <h1>publish your site</h1>
 <h2>site generation</h2>
 <p>Once Pelican is installed and you have some content (e.g., in Markdown or reST format), you can convert your content into HTML via the <code>pelican</code> command, specifying the path to your content and (optionally) the path to your <a href="http://docs.getpelican.com/en/stable/settings.html">settings</a> file:</p>
-<div class="highlight"><pre><span></span>pelican /path/to/your/content/ [-s path/to/your/settings.py]
+<div class="highlight"><pre><span></span><span class="n">pelican</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">content</span><span class="o">/</span> <span class="p">[</span><span class="o">-</span><span class="n">s</span> <span class="n">path</span><span class="o">/</span><span class="k">to</span><span class="o">/</span><span class="n">your</span><span class="o">/</span><span class="n">settings</span><span class="p">.</span><span class="n">py</span><span class="p">]</span>
 </pre></div>
 
 
 <p>The above command will generate your site and save it in the <code>output/</code> folder, using the default theme to produce a simple site. The default theme consists of very simple <strong>HTML</strong> without styling and is provided so folks may use it as a basis for creating their own themes.</p>
 <p>When working on a single article or page, it is possible to generate only the file that corresponds to that content. To do this, use the <code>--write-selected</code> argument, like so:</p>
-<div class="highlight"><pre><span></span>pelican --write-selected output/posts/my-post-title.html
+<div class="highlight"><pre><span></span><span class="n">pelican</span> <span class="c1">--write-selected output/posts/my-post-title.html</span>
 </pre></div>
 
 
 <p>Note that you must specify the path to the generated output file — not the source content. To determine the output file name and location, use the <code>--debug</code> flag. If desired, <code>--write-selected</code> can take a comma-separated list of paths or can be configured as a setting. (See: <a href="http://docs.getpelican.com/en/stable/settings.html#writing-only-selected-content">Writing only selected content</a>)</p>
 <p>Pelican has other command-line switches available. Have a look at the help to see all the options you can use:</p>
-<div class="highlight"><pre><span></span>pelican --help
+<div class="highlight"><pre><span></span><span class="n">pelican</span> <span class="c1">--help</span>
 </pre></div>
 
 
 <h3>viewing the generated files</h3>
 <p>The files generated by Pelican are static files, so you don’t actually need anything special to view them. You can use your browser to open the generated HTML files directly:</p>
-<div class="highlight"><pre><span></span>firefox output/index.html
+<div class="highlight"><pre><span></span><span class="n">firefox</span> <span class="k">output</span><span class="o">/</span><span class="k">index</span><span class="p">.</span><span class="n">html</span>
 </pre></div>
 
 
 <p>Because the above method may have trouble locating your CSS and other linked assets, running a simple web server using Python will often provide a more reliable previewing experience.</p>
 <p>For Python 2, run:</p>
-<div class="highlight"><pre><span></span>cd output
-python -m SimpleHTTPServer
+<div class="highlight"><pre><span></span><span class="n">cd</span> <span class="k">output</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">SimpleHTTPServer</span>
 </pre></div>
 
 
 <p>For Python 3,run:</p>
-<div class="highlight"><pre><span></span>cd output
-python -m http.server
+<div class="highlight"><pre><span></span><span class="n">cd</span> <span class="k">output</span>
+<span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">http</span><span class="p">.</span><span class="n">server</span>
 </pre></div>
 
 
 <p>Once the basic server has been started, you can preview your site at <a href="http://localhost:8000/">http://localhost:8000/</a></p>
 <h2>deployment</h2>
 <p>After you have generated your site, previewed it in your local development environment, and are ready to deploy it to production, you might first re-generate your site with any production-specific settings (e.g., analytics feeds, etc.) that you may have defined:</p>
-<div class="highlight"><pre><span></span>pelican content -s publishconf.py
+<div class="highlight"><pre><span></span><span class="n">pelican</span> <span class="n">content</span> <span class="o">-</span><span class="n">s</span> <span class="n">publishconf</span><span class="p">.</span><span class="n">py</span>
 </pre></div>
 
 
@@ -184,27 +183,27 @@ python -m http.server
 <p>Following are automation tools that “wrap” the <code>pelican</code> command and can simplify the process of generating, previewing, and uploading your site.</p>
 <h3>invoke</h3>
 <p>The advantage of <a href="http://www.pyinvoke.org/">Invoke</a> is that it is written in Python and thus can be used in a wide range of environments. The downside is that it must be installed separately. Use the following command to install Invoke, prefixing with <code>sudo</code> if your environment requires it:</p>
-<div class="highlight"><pre><span></span>pip install invoke
+<div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">invoke</span>
 </pre></div>
 
 
 <p>Take a moment to open the <code>tasks.py</code> file that was generated in your project root. You will see a number of commands, any one of which can be renamed, removed, and/or customized to your liking. Using the out-of-the-box configuration, you can generate your site via:</p>
-<div class="highlight"><pre><span></span>invoke build
+<div class="highlight"><pre><span></span><span class="n">invoke</span> <span class="n">build</span>
 </pre></div>
 
 
 <p>If you’d prefer to have Pelican automatically regenerate your site every time a change is detected (which is handy when testing locally), use the following command instead:</p>
-<div class="highlight"><pre><span></span>invoke regenerate
+<div class="highlight"><pre><span></span><span class="n">invoke</span> <span class="n">regenerate</span>
 </pre></div>
 
 
 <p>To serve the generated site so it can be previewed in your browser at <a href="http://localhost:8000/">http://localhost:8000/</a>:</p>
-<div class="highlight"><pre><span></span>invoke serve
+<div class="highlight"><pre><span></span><span class="n">invoke</span> <span class="n">serve</span>
 </pre></div>
 
 
 <p>If during the <code>pelican-quickstart</code> process you answered “<em>yes</em>” when asked whether you want to upload your site via SSH, you can use the following command to publish your site via rsync over SSH:</p>
-<div class="highlight"><pre><span></span>invoke publish
+<div class="highlight"><pre><span></span><span class="n">invoke</span> <span class="n">publish</span>
 </pre></div>
 
 
@@ -212,33 +211,33 @@ python -m http.server
 <h3>make</h3>
 <p>A <code>Makefile</code> is also automatically created for you when you say “yes” to the relevant question during the <code>pelican-quickstart</code> process. The advantage of this method is that the <code>make</code> command is built into most POSIX systems and thus doesn’t require installing anything else in order to use it. The downside is that non-POSIX systems (e.g., Windows) do not include <code>make</code>, and installing it on those systems can be a non-trivial task.</p>
 <p>If you want to use <code>make</code> to generate your site using the settings in <code>pelicanconf.py</code>, run:</p>
-<div class="highlight"><pre><span></span>make html
+<div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
 </pre></div>
 
 
 <p>To generate the site for production, using the settings in <code>publishconf.py</code>, run:</p>
-<div class="highlight"><pre><span></span>make publish
+<div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">publish</span>
 </pre></div>
 
 
 <p>If you’d prefer to have Pelican automatically regenerate your site every time a change is detected (which is handy when testing locally), use the following command instead:</p>
-<div class="highlight"><pre><span></span>make regenerate
+<div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">regenerate</span>
 </pre></div>
 
 
 <p>To serve the generated site so it can be previewed in your browser at <a href="http://localhost:8000/">http://localhost:8000/</a>:</p>
-<div class="highlight"><pre><span></span>make serve
+<div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">serve</span>
 </pre></div>
 
 
 <p>Normally you would need to run <code>make regenerate</code> and <code>make serve</code> in two separate terminal sessions, but you can run both at once via:</p>
-<div class="highlight"><pre><span></span>make devserver
+<div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">devserver</span>
 </pre></div>
 
 
 <p>The above command will simultaneously run Pelican in regeneration mode as well as serve the output at <a href="http://localhost:8000">http://localhost:8000</a>.</p>
 <p>When you’re ready to publish your site, you can upload it via the method(s) you chose during the <code>pelican-quickstart</code> questionnaire. For this example, we’ll use rsync over ssh:</p>
-<div class="highlight"><pre><span></span>make rsync_upload
+<div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">rsync_upload</span>
 </pre></div>
 
 
@@ -248,14 +247,18 @@ python -m http.server
                 <div class="blogroll">
                         <h2>links</h2>
                         <ul>
-                            <li><a href="https://github.com/fx-moon">Github</a></li>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->

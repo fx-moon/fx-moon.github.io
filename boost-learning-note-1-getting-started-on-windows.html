@@ -1,26 +1,25 @@
 <!DOCTYPE html>
-<html lang="english">
+<html lang="en">
 <head>
         <meta charset="utf-8" />
         <title>boost learning note (1) getting started on Windows</title>
-        <link rel="stylesheet" href="https://www.git.moe/theme/css/main.css" />
-        <link href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="salt fish on the moon Atom Feed" />
+        <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
 <body id="index" class="home">
         <header id="banner" class="body">
-                <h1><a href="https://www.git.moe/">salt fish on the moon </a></h1>
+                <h1><a href="/">salt fish on the moon</a></h1>
                 <nav><ul>
-                    <li><a href="https://www.git.moe/pages/about.html">About</a></li>
-                    <li class="active"><a href="https://www.git.moe/category/note.html">note</a></li>
-                    <li><a href="https://www.git.moe/category/record.html">record</a></li>
+                    <li><a href="/pages/about.html">About</a></li>
+                    <li class="active"><a href="/category/note.html">note</a></li>
+                    <li><a href="/category/record.html">record</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="https://www.git.moe/boost-learning-note-1-getting-started-on-windows.html" rel="bookmark"
+        <a href="/boost-learning-note-1-getting-started-on-windows.html" rel="bookmark"
            title="Permalink to boost learning note (1) getting started on Windows">boost learning note (1) getting started on Windows</a></h1>
     </header>
 
@@ -31,10 +30,10 @@
         </abbr>
 
         <address class="vcard author">
-                By                         <a class="url fn" href="https://www.git.moe/author/fx-moon.html">fx-moon</a>
+                By                         <a class="url fn" href="/author/fx-moon.html">fx-moon</a>
         </address>
-<p>In <a href="https://www.git.moe/category/note.html">note</a>.</p>
-<p>tags: <a href="https://www.git.moe/tag/boost.html">boost</a> </p>
+<p>In <a href="/category/note.html">note</a>.</p>
+<p>tags: <a href="/tag/boost.html">boost</a> </p>
 </footer><!-- /.post-info -->      <h1>1 Get boost</h1>
 <p>just find a copy on <a href="https://www.boost.org">https://www.boost.org</a></p>
 <h1>2 The boost distribution</h1>
@@ -68,14 +67,14 @@
 <li>Don't be distracted by the <code>doc\</code> subdirectory; it only contains a subset of the Boost documentation. Start with <code>libs\index.html</code> if you're looking for the whole enchilada.<blockquote>
 <h2>Header Organization</h2>
 <p>The organization of Boost library headers isn't entirely uniform, but most libraries follow a few patterns:
-<em> Some older libraries and most very small libraries place all public headers directly into <code>boost\</code>.
-</em> Most libraries' public headers live in a subdirectory of boost\, named after the library. For example, you'll find the Python library's def.hpp header in
+* Some older libraries and most very small libraries place all public headers directly into <code>boost\</code>.
+* Most libraries' public headers live in a subdirectory of boost\, named after the library. For example, you'll find the Python library's def.hpp header in
   <code>bash
   boost\python\def.hpp.</code>
-<em> Some libraries have an “aggregate header” in boost\ that #includes all of the library's other headers. For example, Boost.Python's aggregate header is
+* Some libraries have an “aggregate header” in boost\ that #includes all of the library's other headers. For example, Boost.Python's aggregate header is
   <code>bash
   boost\python.hpp.</code>
-</em> Most libraries place private headers in a subdirectory called <code>detail\</code>, or <code>aux_\</code>. Don't expect to find anything you can use in these directories.</p>
+* Most libraries place private headers in a subdirectory called <code>detail\</code>, or <code>aux_\</code>. Don't expect to find anything you can use in these directories.</p>
 </blockquote>
 </li>
 </ol>
@@ -194,7 +193,7 @@ The GCC toolchains (Cygwin and MinGW) are notable exceptions; GCC users should r
 </ol>
 <h2>6.2 Or,Link From the Command Prompt</h2>
 <p>For example, we can compile and link the above program from the Visual C++ command-line by simply adding the <strong>bold</strong> text below to the command line we used earlier, assuming your Boost binaries are in <em>C:\Program Files\boost\boost_1_67_0\lib</em>:</p>
-<div class="highlight"><pre><span></span>cl /EHsc /I path\to\boost_1_67_0 example.cpp /link /LIBPATH:C:\Program Files\boost\boost_1_67_0\lib
+<div class="highlight"><pre><span></span><span class="n">cl</span> <span class="o">/</span><span class="n">EHsc</span> <span class="o">/</span><span class="n">I</span> <span class="n">path</span><span class="err">\</span><span class="k">to</span><span class="err">\</span><span class="n">boost_1_67_0</span> <span class="n">example</span><span class="p">.</span><span class="n">cpp</span> <span class="o">/</span><span class="n">link</span> <span class="o">/</span><span class="n">LIBPATH</span><span class="p">:</span><span class="k">C</span><span class="p">:</span><span class="err">\</span><span class="n">Program</span> <span class="n">Files</span><span class="err">\</span><span class="n">boost</span><span class="err">\</span><span class="n">boost_1_67_0</span><span class="err">\</span><span class="n">lib</span>
 </pre></div>
 
 
@@ -335,7 +334,7 @@ The GCC toolchains (Cygwin and MinGW) are notable exceptions; GCC users should r
 
 
 <p>Now, in a command prompt window, type:</p>
-<div class="highlight"><pre><span></span>path\to\compiled\example &lt; path\to\jayne.txt
+<div class="highlight"><pre><span></span><span class="n">path</span><span class="err">\</span><span class="k">to</span><span class="err">\</span><span class="n">compiled</span><span class="err">\</span><span class="n">example</span> <span class="o">&lt;</span> <span class="n">path</span><span class="err">\</span><span class="k">to</span><span class="err">\</span><span class="n">jayne</span><span class="p">.</span><span class="n">txt</span>
 </pre></div>
 
 
@@ -362,14 +361,18 @@ The GCC toolchains (Cygwin and MinGW) are notable exceptions; GCC users should r
                 <div class="blogroll">
                         <h2>links</h2>
                         <ul>
-                            <li><a href="https://github.com/fx-moon">Github</a></li>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
                         </ul>
                 </div><!-- /.blogroll -->
                 <div class="social">
                         <h2>social</h2>
                         <ul>
-                            <li><a href="https://www.git.moe/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
 
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
                         </ul>
                 </div><!-- /.social -->
         </section><!-- /#extras -->
