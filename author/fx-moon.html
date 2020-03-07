@@ -13,12 +13,177 @@
                 <nav><ul>
                     <li><a href="https://www.git.moe/pages/about.html">About</a></li>
                     <li><a href="https://www.git.moe/category/note.html">note</a></li>
+                    <li><a href="https://www.git.moe/category/record.html">record</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="https://www.git.moe/very-simple-powershell.html">Very Simple Powershell</a></h1>
+                    <h1 class="entry-title"><a href="https://www.git.moe/strlen_analyze.html">strlen_analyze</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2019-04-01T00:00:00+08:00">
+                Published: 周一 01 四月 2019
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="https://www.git.moe/author/fx-moon.html">fx-moon</a>
+        </address>
+<p>In <a href="https://www.git.moe/category/record.html">record</a>.</p>
+<p>tags: <a href="https://www.git.moe/tag/program.html">program</a> <a href="https://www.git.moe/tag/analyze.html">analyze</a> </p>
+</footer><!-- /.post-info --><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ctime&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;windows.h&gt;</span><span class="cp"></span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">1024</span><span class="o">*</span><span class="mi">1024</span><span class="o">*</span><span class="mi">500</span><span class="p">;</span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+<span class="k">class</span> <span class="nc">timer</span>
+<span class="p">{</span>
+    <span class="kt">long</span> <span class="kt">long</span> <span class="n">t</span><span class="p">;</span>
+
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">timer</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="o">~</span><span class="n">timer</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">clock</span><span class="p">()</span> <span class="o">-</span> <span class="n">t</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kt">size_t</span> <span class="nf">strlen1</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">register</span> <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span><span class="o">*</span><span class="n">str</span><span class="o">++</span><span class="p">)</span>
+
+        <span class="o">++</span><span class="n">length</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">length</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">size_t</span> <span class="nf">strlen3</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sstr</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="k">register</span> <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="o">*</span><span class="n">p_size</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">;</span>
+    <span class="kr">__asm</span><span class="p">{</span>
+        <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">sstr</span><span class="p">;</span>
+        <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span><span class="mh">0xffffffff</span><span class="p">;</span>
+        <span class="n">xor</span> <span class="n">eax</span><span class="p">,</span><span class="n">eax</span><span class="p">;</span>
+        <span class="n">repne</span> <span class="n">scasb</span><span class="p">;</span>
+        <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">p_size</span><span class="p">];</span>
+        <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">ecx</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mh">0xffffffff</span> <span class="o">-</span> <span class="n">size</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">size_t</span> <span class="nf">strlen2</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
+<span class="p">{</span>
+
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">char_ptr</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="o">*</span><span class="n">longword_ptr</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+    <span class="k">register</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">longword</span><span class="p">,</span> <span class="n">magic_bits</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">char_ptr</span> <span class="o">=</span> <span class="n">str</span><span class="p">;</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">)(</span><span class="n">char_ptr</span><span class="p">)</span>
+
+                          <span class="o">&amp;</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>
+         <span class="o">++</span><span class="n">char_ptr</span><span class="p">)</span>
+
+    <span class="p">{</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">char_ptr</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">char_ptr</span> <span class="o">-</span> <span class="n">str</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">longword_ptr</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">char_ptr</span><span class="p">;</span>
+
+    <span class="n">magic_bits</span> <span class="o">=</span> <span class="mh">0x7efefeffL</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(;;)</span>
+
+    <span class="p">{</span>
+
+        <span class="n">longword</span> <span class="o">=</span> <span class="o">*</span><span class="n">longword_ptr</span><span class="o">++</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">((((</span><span class="n">longword</span> <span class="o">+</span> <span class="n">magic_bits</span><span class="p">)</span> <span class="o">^</span> <span class="o">~</span><span class="n">longword</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">magic_bits</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+
+        <span class="p">{</span>
+
+            <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)(</span><span class="n">longword_ptr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
+
+                <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="n">n</span><span class="p">]{</span><span class="mi">0</span><span class="p">};</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+
+    <span class="p">{</span>
+        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="p">{</span>
+        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen1</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="p">{</span>
+        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen2</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="p">{</span>
+        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen3</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="p">{</span>
+        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
+        <span class="n">Sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">system</span><span class="p">(</span><span class="s">&quot;pause&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="https://www.git.moe/very-simple-powershell.html" rel="bookmark"
+                           title="Permalink to Very Simple Powershell">Very Simple Powershell</a></h1>
+                </header>
+
+                <div class="entry-content">
 <footer class="post-info">
         <abbr class="published" title="2019-01-22T00:00:00+08:00">
                 Published: 周二 22 一月 2019
@@ -29,7 +194,7 @@
         </address>
 <p>In <a href="https://www.git.moe/category/note.html">note</a>.</p>
 <p>tags: <a href="https://www.git.moe/tag/powershell.html">powershell</a> </p>
-</footer><!-- /.post-info --><h1>Basic Powershell</h1>
+</footer><!-- /.post-info -->                <h1>Basic Powershell</h1>
 <h2>Variable</h2>
 <p><code>$&lt;name&gt;=&lt;value&gt;</code></p>
 <div class="highlight"><pre><span></span>$usrname=&#39;John&#39;
@@ -68,101 +233,10 @@ $len=32
 <span class="p">{</span>
     <span class="p">...</span>
 <span class="p">}</span>
-<span class="k">else</span>
-<span class="p">{</span>
-    <span class="p">...</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="k">switch</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">condition</span> <span class="p">{...;</span><span class="k">break</span><span class="p">}</span>
-    <span class="k">default</span> <span class="p">{...}</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span>-gt greater than
--lt less than
--eq equal
-</pre></div>
-
-
-<h3>Circulation</h3>
-<div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(;;)</span>
-<span class="p">{</span>
-    <span class="p">...</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="k">foreach</span><span class="p">(</span><span class="nv">$var</span> <span class="k">in</span> <span class="nv">$set</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="p">...</span>
-<span class="p">}</span>
-</pre></div>
-
-
-<div class="highlight"><pre><span></span><span class="k">while</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="p">...</span>
-<span class="p">}</span>
-<span class="k">do</span>
-<span class="p">{</span>
-    <span class="p">...</span>
-<span class="p">}</span>
-<span class="k">while</span><span class="p">/</span><span class="k">until</span><span class="p">()</span>
-</pre></div>
-
-
-<h1>.NET &amp; Class</h1>
-<h2>Class</h2>
-<div class="highlight"><pre><span></span><span class="c">#show all members of a object</span>
-<span class="nv">$var</span> <span class="p">|</span> <span class="n">gm</span>
-<span class="c">#call member function</span>
-<span class="nv">$var</span><span class="p">.</span><span class="n">fun</span><span class="p">()</span>
-<span class="c">#visit member variable</span>
-<span class="nv">$var</span><span class="p">.</span><span class="n">var</span>
-</pre></div>
-
-
-<h2>.NET</h2>
-<p>some methods to creat a new object</p>
-<div class="highlight"><pre><span></span><span class="nv">$obj</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Version</span>
-<span class="nv">$obj</span>
-<span class="nv">$obj</span> <span class="p">=</span> <span class="nb">New-Object</span> <span class="n">System</span><span class="p">.</span><span class="n">Version</span> <span class="n">3</span> <span class="n">6</span>
-<span class="nv">$obj</span>
-<span class="nv">$obj</span> <span class="p">=</span> <span class="no">[System.Version]</span><span class="p">::</span><span class="n">New</span><span class="p">()</span>
-<span class="nv">$obj</span>
-<span class="nv">$obj</span> <span class="p">=</span> <span class="no">[System.Version]</span><span class="p">::</span><span class="n">New</span><span class="p">(</span><span class="n">3</span><span class="p">,</span><span class="n">6</span><span class="p">)</span>
-<span class="nv">$obj</span>
-</pre></div>
-
-
-<p>type conversion</p>
-<div class="highlight"><pre><span></span><span class="nv">$obj</span><span class="p">.</span><span class="n">ToString</span><span class="p">()</span>
-<span class="no">[int]</span><span class="n">1</span><span class="p">.</span><span class="n">7</span>
-<span class="no">[System.Version]</span><span class="s1">&#39;3.6.0.0&#39;</span>
-</pre></div>
-
-
-<h2>Create a Class</h2>
-<div class="highlight"><pre><span></span><span class="n">class</span> <span class="n">MyClass</span>
-<span class="p">{</span>
-    <span class="p">&lt;</span><span class="n">hidden</span><span class="p">|</span><span class="n">static</span><span class="p">&gt;</span>
-    <span class="no">[typename]</span><span class="p">$&lt;</span><span class="n">member</span><span class="p">&gt;</span>
-    <span class="n">MyClass</span><span class="p">()</span><span class="c">#Constructor</span>
-    <span class="p">{</span>
-        <span class="p">...</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
+<span class="k">else …</span></pre></div>
+                <a class="readmore" href="https://www.git.moe/very-simple-powershell.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
 
             <li><article class="hentry">
                 <header>
