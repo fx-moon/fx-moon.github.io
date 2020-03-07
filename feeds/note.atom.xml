@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>salt fish on the moon - note</title><link href="https://www.git.moe/" rel="alternate"></link><link href="https://www.git.moe/feeds/note.atom.xml" rel="self"></link><id>https://www.git.moe/</id><updated>2019-01-22T00:00:00+00:00</updated><entry><title>Very Simple Powershell</title><link href="https://www.git.moe/very-simple-powershell.html" rel="alternate"></link><published>2019-01-22T00:00:00+00:00</published><updated>2019-01-22T00:00:00+00:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2019-01-22:/very-simple-powershell.html</id><summary type="html">&lt;h1&gt;Basic Powershell&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>salt fish on the moon - note</title><link href="https://www.git.moe/" rel="alternate"></link><link href="https://www.git.moe/feeds/note.atom.xml" rel="self"></link><id>https://www.git.moe/</id><updated>2019-01-22T00:00:00+08:00</updated><entry><title>Very Simple Powershell</title><link href="https://www.git.moe/very-simple-powershell.html" rel="alternate"></link><published>2019-01-22T00:00:00+08:00</published><updated>2019-01-22T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2019-01-22:/very-simple-powershell.html</id><summary type="html">&lt;h1&gt;Basic Powershell&lt;/h1&gt;
 &lt;h2&gt;Variable&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;$&amp;lt;name&amp;gt;=&amp;lt;value&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;$usrname=&amp;#39;John&amp;#39;
@@ -166,7 +166,7 @@ $len=32
         &lt;span class="p"&gt;...&lt;/span&gt;
     &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content><category term="powershell"></category></entry><entry><title>build C++ program with msvc and vscode</title><link href="https://www.git.moe/build-c-program-with-msvc-and-vscode.html" rel="alternate"></link><published>2018-12-01T00:00:00+00:00</published><updated>2018-12-01T00:00:00+00:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-12-01:/build-c-program-with-msvc-and-vscode.html</id><summary type="html">&lt;h1&gt;prepare&lt;/h1&gt;
+&lt;/pre&gt;&lt;/div&gt;</content><category term="powershell"></category></entry><entry><title>build C++ program with msvc and vscode</title><link href="https://www.git.moe/build-c-program-with-msvc-and-vscode.html" rel="alternate"></link><published>2018-12-01T00:00:00+08:00</published><updated>2018-12-01T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-12-01:/build-c-program-with-msvc-and-vscode.html</id><summary type="html">&lt;h1&gt;prepare&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;Visual Studio or MSVC&lt;/li&gt;
 &lt;li&gt;Visual Studio Code&lt;/li&gt;
@@ -236,7 +236,7 @@ cl.exe &lt;span class="nv"&gt;%compilerflags%&lt;/span&gt; *.cpp /link &lt;span 
 &lt;h1&gt;run~&lt;/h1&gt;
 &lt;p&gt;press Ctrl-Shift-B to build&lt;/p&gt;
 &lt;p&gt;press Ctrl-Shift-F5 to run&lt;/p&gt;
-&lt;p&gt;press F5 to debug&lt;/p&gt;</content><category term="vscode"></category></entry><entry><title>boost learning note (1) getting started on Windows</title><link href="https://www.git.moe/boost-learning-note-1-getting-started-on-windows.html" rel="alternate"></link><published>2018-11-12T00:00:00+00:00</published><updated>2018-11-12T00:00:00+00:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-11-12:/boost-learning-note-1-getting-started-on-windows.html</id><summary type="html">&lt;h1&gt;1 Get boost&lt;/h1&gt;
+&lt;p&gt;press F5 to debug&lt;/p&gt;</content><category term="vscode"></category></entry><entry><title>boost learning note (1) getting started on Windows</title><link href="https://www.git.moe/boost-learning-note-1-getting-started-on-windows.html" rel="alternate"></link><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-11-12:/boost-learning-note-1-getting-started-on-windows.html</id><summary type="html">&lt;h1&gt;1 Get boost&lt;/h1&gt;
 &lt;p&gt;just find a copy on &lt;a href="https://www.boost.org"&gt;https://www.boost.org&lt;/a&gt;&lt;/p&gt;
 &lt;h1&gt;2 The boost distribution&lt;/h1&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;boost_1_67_0&lt;span class="se"&gt;\ &lt;/span&gt;.................The “boost root directory”
@@ -562,7 +562,7 @@ The GCC toolchains (Cygwin and MinGW) are notable exceptions; GCC users should r
 &lt;p&gt;Good luck, and have fun!&lt;/p&gt;
 &lt;p&gt;—the Boost Developers&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h1&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html"&gt;Orign page&lt;/a&gt;&lt;/h1&gt;</content><category term="boost"></category></entry><entry><title>try pelican</title><link href="https://www.git.moe/try-pelican.html" rel="alternate"></link><published>2018-11-12T00:00:00+00:00</published><updated>2018-11-12T00:00:00+00:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-11-12:/try-pelican.html</id><summary type="html">&lt;h1&gt;try pelican&lt;/h1&gt;
+&lt;h1&gt;&lt;a href="https://www.boost.org/doc/libs/1_68_0/more/getting_started/windows.html"&gt;Orign page&lt;/a&gt;&lt;/h1&gt;</content><category term="boost"></category></entry><entry><title>try pelican</title><link href="https://www.git.moe/try-pelican.html" rel="alternate"></link><published>2018-11-12T00:00:00+08:00</published><updated>2018-11-12T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-11-12:/try-pelican.html</id><summary type="html">&lt;h1&gt;try pelican&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;I just forget the usage again and again,so I decided to WcRoIpTyE it=.=&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -781,7 +781,7 @@ python -m http.server
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;(The default &lt;code&gt;Makefile&lt;/code&gt; and &lt;code&gt;devserver.sh&lt;/code&gt; scripts use the &lt;code&gt;python&lt;/code&gt; and &lt;code&gt;pelican&lt;/code&gt; executables to complete its tasks. If you want to use different executables, such as &lt;code&gt;python3&lt;/code&gt;, you can set the &lt;code&gt;PY&lt;/code&gt; and &lt;code&gt;PELICAN&lt;/code&gt; environment variables, respectively, to override the default executable names.)&lt;/p&gt;</content><category term="pelican"></category></entry><entry><title>git learning note</title><link href="https://www.git.moe/git-learning-note.html" rel="alternate"></link><published>2018-08-10T00:00:00+01:00</published><updated>2018-08-10T00:00:00+01:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-08-10:/git-learning-note.html</id><summary type="html">&lt;h1&gt;git learning note&lt;/h1&gt;
+&lt;p&gt;(The default &lt;code&gt;Makefile&lt;/code&gt; and &lt;code&gt;devserver.sh&lt;/code&gt; scripts use the &lt;code&gt;python&lt;/code&gt; and &lt;code&gt;pelican&lt;/code&gt; executables to complete its tasks. If you want to use different executables, such as &lt;code&gt;python3&lt;/code&gt;, you can set the &lt;code&gt;PY&lt;/code&gt; and &lt;code&gt;PELICAN&lt;/code&gt; environment variables, respectively, to override the default executable names.)&lt;/p&gt;</content><category term="pelican"></category></entry><entry><title>git learning note</title><link href="https://www.git.moe/git-learning-note.html" rel="alternate"></link><published>2018-08-10T00:00:00+08:00</published><updated>2018-08-10T00:00:00+08:00</updated><author><name>fx-moon</name></author><id>tag:www.git.moe,2018-08-10:/git-learning-note.html</id><summary type="html">&lt;h1&gt;git learning note&lt;/h1&gt;
 &lt;hr&gt;
 &lt;h2&gt;git init&lt;/h2&gt;
 &lt;p&gt;This creates a new subdirectory named .git that contains all of your necessary repository files — a Git repository skeleton. At this point, nothing in your project is tracked yet. &lt;/p&gt;
