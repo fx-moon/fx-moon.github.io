@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <meta charset="utf-8" />
-        <title>salt fish on the moon - program</title>
-        <link rel="stylesheet" href="/theme/css/main.css" />
+	<meta charset="utf-8">
+	<title>salt fish on the moon</title>
+	<meta name="description" content="">
+	<meta name="author" content="fx-moon">
+
+	<!-- HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link href="/theme/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/local.css" rel="stylesheet">
+	<link href="/theme/pygments.css" rel="stylesheet">
+
+	<!-- Feeds -->
+
+
+
+
 </head>
+<body>
+	<div class="topbar">
+	  <div class="topbar-inner">
+		<div class="container-fluid">
+		  <a class="brand" href="/">salt fish on the moon</a>
+			<ul class="nav">
+						<li><a href="/pages/about.html">About</a></li>
+					<li ><a href="/category/note.html">note</a></li>
+					<li ><a href="/category/record.html">record</a></li>
+			</ul>
+			<p class="pull-right"><a href="/archives.html">[archives]</a> <a href="/tags.html">[tags]</a></p>
+		</div>
+	  </div>
+	</div>
 
-<body id="index" class="home">
-        <header id="banner" class="body">
-                <h1><a href="/">salt fish on the moon</a></h1>
-                <nav><ul>
-                    <li><a href="/pages/about.html">About</a></li>
-                    <li><a href="/category/note.html">note</a></li>
-                    <li><a href="/category/record.html">record</a></li>
-                </ul></nav>
-        </header><!-- /#banner -->
-
-            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="/strlen_analyze.html">strlen_analyze</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2019-04-01T00:00:00+08:00">
-                Published: 周一 01 四月 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/fx-moon.html">fx-moon</a>
-        </address>
-<p>In <a href="/category/record.html">record</a>.</p>
-<p>tags: <a href="/tag/program.html">program</a> <a href="/tag/analyze.html">analyze</a> </p>
-</footer><!-- /.post-info --><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+	<div class="container-fluid">
+	  <div class="sidebar">
+		<div class="well">
+			<h3>Blogroll</h3>
+			<ul>
+				<li><a href="http://getpelican.com/">Pelican</a></li>
+				<li><a href="http://python.org/">Python.org</a></li>
+				<li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+			</ul>
+			<div class="social">
+			<h3>Social</h3>
+			<ul>
+			</ul>
+			</div>
+		</div>
+	  </div>
+	  <div class="content">
+<div class="page-header"><h1>salt fish on the moon <small>program</small></h1></div>
+<div class='article'>
+	<h2>strlen_analyze</h2>
+	<div class="well small">Permalink: <a class="more" href="/strlen_analyze.html">2019-04-01 00:00:00+08:00</a>
+by <a class="url fn" href="/author/fx-moon.html">fx-moon </a>
+ in <a href="/category/record.html">record</a>
+tags: <a href="/tag/program.html">program</a> <a href="/tag/analyze.html">analyze</a> </div>
+	<div class="summary"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
 
 <span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
 
@@ -64,140 +96,17 @@
 
         <span class="o">++</span><span class="n">length</span><span class="p">;</span>
 
-    <span class="k">return</span> <span class="p">(</span><span class="n">length</span><span class="p">);</span>
-<span class="p">}</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">length …</span></pre></div> <a class="btn primary xsmall" href="/strlen_analyze.html">more…</a>
+	</div>
+</div>	
 
-<span class="kt">size_t</span> <span class="nf">strlen3</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sstr</span><span class="p">)</span>
-<span class="p">{</span>
 
-    <span class="k">register</span> <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="o">*</span><span class="n">p_size</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">;</span>
-    <span class="kr">__asm</span><span class="p">{</span>
-        <span class="n">mov</span> <span class="n">edi</span><span class="p">,</span><span class="n">sstr</span><span class="p">;</span>
-        <span class="n">mov</span> <span class="n">ecx</span><span class="p">,</span><span class="mh">0xffffffff</span><span class="p">;</span>
-        <span class="n">xor</span> <span class="n">eax</span><span class="p">,</span><span class="n">eax</span><span class="p">;</span>
-        <span class="n">repne</span> <span class="n">scasb</span><span class="p">;</span>
-        <span class="n">mov</span> <span class="n">eax</span><span class="p">,</span><span class="n">dword</span> <span class="n">ptr</span> <span class="p">[</span><span class="n">p_size</span><span class="p">];</span>
-        <span class="n">mov</span> <span class="n">dword</span> <span class="n">ptr</span><span class="p">[</span><span class="n">eax</span><span class="p">],</span><span class="n">ecx</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="mh">0xffffffff</span> <span class="o">-</span> <span class="n">size</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span>
+		<footer>
+		  <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme based on <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
+		  <p>&copy; fx-moon</p>
+		</footer>
+	  </div>
 
-<span class="kt">size_t</span> <span class="nf">strlen2</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
-<span class="p">{</span>
-
-    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">char_ptr</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-
-    <span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="o">*</span><span class="n">longword_ptr</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-
-    <span class="k">register</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="n">longword</span><span class="p">,</span> <span class="n">magic_bits</span><span class="p">;</span>
-
-    <span class="k">for</span> <span class="p">(</span><span class="n">char_ptr</span> <span class="o">=</span> <span class="n">str</span><span class="p">;</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">)(</span><span class="n">char_ptr</span><span class="p">)</span>
-
-                          <span class="o">&amp;</span> <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span>
-         <span class="o">++</span><span class="n">char_ptr</span><span class="p">)</span>
-
-    <span class="p">{</span>
-
-        <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">char_ptr</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
-
-            <span class="k">return</span> <span class="n">char_ptr</span> <span class="o">-</span> <span class="n">str</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="n">longword_ptr</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="n">char_ptr</span><span class="p">;</span>
-
-    <span class="n">magic_bits</span> <span class="o">=</span> <span class="mh">0x7efefeffL</span><span class="p">;</span>
-
-    <span class="k">for</span> <span class="p">(;;)</span>
-
-    <span class="p">{</span>
-
-        <span class="n">longword</span> <span class="o">=</span> <span class="o">*</span><span class="n">longword_ptr</span><span class="o">++</span><span class="p">;</span>
-
-        <span class="k">if</span> <span class="p">((((</span><span class="n">longword</span> <span class="o">+</span> <span class="n">magic_bits</span><span class="p">)</span> <span class="o">^</span> <span class="o">~</span><span class="n">longword</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">magic_bits</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-
-        <span class="p">{</span>
-
-            <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cp</span> <span class="o">=</span> <span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)(</span><span class="n">longword_ptr</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
-
-                <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span><span class="p">;</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
-
-                <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
-
-                <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
-
-            <span class="k">if</span> <span class="p">(</span><span class="n">cp</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;\0&#39;</span><span class="p">)</span>
-
-                <span class="k">return</span> <span class="n">cp</span> <span class="o">-</span> <span class="n">str</span> <span class="o">+</span> <span class="mi">3</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-<span class="kt">char</span> <span class="n">s</span><span class="p">[</span><span class="n">n</span><span class="p">]{</span><span class="mi">0</span><span class="p">};</span>
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
-
-    <span class="p">{</span>
-        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
-        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">{</span>
-        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
-        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen1</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">{</span>
-        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
-        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen2</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">{</span>
-        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
-        <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">strlen3</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="sc">&#39; &#39;</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="p">{</span>
-        <span class="n">timer</span> <span class="n">t</span><span class="p">;</span>
-        <span class="n">Sleep</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="n">system</span><span class="p">(</span><span class="s">&quot;pause&quot;</span><span class="p">);</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>                </article>
-            </aside><!-- /#featured -->
-        <section id="extras" class="body">
-                <div class="blogroll">
-                        <h2>links</h2>
-                        <ul>
-                            <li><a href="http://getpelican.com/">Pelican</a></li>
-                            <li><a href="http://python.org/">Python.org</a></li>
-                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
-                            <li><a href="#">You can modify those links in your config file</a></li>
-                        </ul>
-                </div><!-- /.blogroll -->
-                <div class="social">
-                        <h2>social</h2>
-                        <ul>
-
-                            <li><a href="#">You can add links in your config file</a></li>
-                            <li><a href="#">Another social link</a></li>
-                        </ul>
-                </div><!-- /.social -->
-        </section><!-- /#extras -->
-
-        <footer id="contentinfo" class="body">
-                <address id="about" class="vcard body">
-                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
-                </address><!-- /#about -->
-
-                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
-        </footer><!-- /#contentinfo -->
-
+	</div>
 </body>
 </html>
