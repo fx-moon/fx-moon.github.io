@@ -76,12 +76,12 @@
               <h1>cin vs getline vs cin.getline</h1>
 <h2>Case with <code>'\n'</code></h2>
 <h3>cin</h3>
-<div class="highlight"><pre><span></span><span class="k">drop</span> <span class="k">all</span> <span class="o">`</span><span class="s1">&#39;\n&#39;</span><span class="o">`</span> <span class="k">except</span> <span class="k">last</span> <span class="n">one</span><span class="p">.</span>
+<div class="highlight"><pre><span></span><span class="k">drop</span> <span class="k">all</span> <span class="o">`</span><span class="s1">&#39;\n&#39;</span><span class="o">`</span> <span class="k">except</span> <span class="k">last</span> <span class="n">one</span> <span class="p">(</span><span class="n">just</span> <span class="n">leave</span> <span class="n">it</span> <span class="k">in</span> <span class="n">the</span> <span class="n">buffer</span><span class="p">,</span><span class="n">won</span><span class="err">&#39;</span><span class="n">t</span> <span class="k">get</span> <span class="n">it</span> <span class="k">and</span> <span class="n">will</span> <span class="n">finally</span> <span class="k">drop</span> <span class="n">it</span><span class="p">).</span>
 </pre></div>
 
 
 <h3>getline</h3>
-<div class="highlight"><pre><span></span><span class="k">replace</span> <span class="o">`</span><span class="s1">&#39;\n&#39;</span><span class="o">`</span> <span class="k">with</span> <span class="o">`</span><span class="s1">&#39;\0&#39;</span><span class="o">`</span><span class="p">.</span>
+<div class="highlight"><pre><span></span><span class="nv">read</span> <span class="k">until</span> `<span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>` <span class="nv">and</span> <span class="nv">replace</span> `<span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>` <span class="nv">with</span> `<span class="s1">&#39;</span><span class="s">\0</span><span class="s1">&#39;</span>`.
 </pre></div>
 
 
